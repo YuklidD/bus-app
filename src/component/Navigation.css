@@ -40,6 +40,10 @@
   .full-width-on-small {
     width: 100%;
   }
+
+  .ms-lg-auto{
+    width: 100%;
+  }
 }
 
 /* Additional styles for the navbar if any */
