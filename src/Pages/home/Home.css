@@ -1,5 +1,5 @@
 /* Home.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 
 :root {
   --primary-color: #7749F8;
@@ -11,140 +11,37 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  
 }
 
 .home {
   min-height: 100vh; /* Full viewport height minimum */
   display: flex;
   flex-direction: column; /* Stack children vertically */
-  font-family: 'Roboto', sans-serif;
-}
-
-.home > .container {
-  flex: 1; /* This will make sure the container takes up all available space */
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  justify-content: space-between; /* This will place the footer at the end */
-  padding-bottom: 56px; /* Add padding to push up the footer */
-}
-
-  /* Navbar Styles */
-  .navbar {
-    background-color: var(--primary-color) !important;
-    color: var(--navbar-text-color) !important;
-    position: fixed;
-    width: 100%; /* Full width */
-    z-index: 1050; /* Ensures navbar stays on top */
-  }
-  
-  
-  .navbar-brand,
-  .navbar-nav .nav-link {
-    color: var(--navbar-text-color) !important;
-  }
-  
-  .navbar-brand:hover,
-  .navbar-nav .nav-link:hover {
-    color: var(--primary-color-hover) !important;
-  }
-
-  .form-element {
-    z-index: 1; /* or 'auto' if you don't need to set a specific z-index */
-}
-  /* Override Bootstrap's primary background color */
-  .bg-primary {
-    background-color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's primary button color */
-  .btn-primary {
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's primary button hover state */
-  .btn-primary:hover {
-    background-color: var(--primary-color-hover) !important;
-    border-color: var(--primary-color-hover) !important;
-  }
-  
-  /* Override Bootstrap's primary text color */
-  .text-primary {
-    color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's primary border color */
-  .border-primary {
-    border-color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's navbar primary color */
-  .navbar-primary, .navbar.bg-primary {
-    background-color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's link color */
-  a {
-    color: var(--primary-color) !important;
-  }
-  
-  /* Override Bootstrap's link hover color */
-  a:hover {
-    color: var(--primary-color-hover) !important;
-  }
-  
-  /* Override for outline-primary button */
-  .btn-outline-primary {
-    width: auto; /* Adjust width as necessary, could be 100% or auto based on your design */
-    margin-top: 1rem; /* Ensure there's space above the button */
-    color: #7749F8;
-  }
-  
-  .btn-outline-primary:hover {
-    color: #fff !important;
-    background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
-  }
-
-  .areYouASection {
-    margin-top: 10rem; /* This will push the section towards the footer but within the content area */
-    margin-bottom: 1rem; /* Add some space below the section */
-
-  }
-  
-  .custom-footer {
-    background-color: #1B1B1B;
-    color: #FFFFFF;
-    padding: 20px 0;
-  }
-  @media (max-width: 768px) {
-    .areYouASection {
-      position: static; /* Change the position for mobile view */
-      width: 100%; /* Full width */
-      padding: 20px 0; /* Add some padding for spacing */
-      text-align: center; /* Center the text for a better mobile view */
-      
-    }
-  
-    .navbar {
-      /* Adjustments for mobile navbar */
-      padding: 10px 0; /* Reduce padding to save space */
-      text-align: center; /* Center the navbar elements */
-      z-index: 1050;
-    }
-  
-    .navbar-brand,
-    .navbar-nav .nav-link {
-      margin: 5px 0; /* Adjust margin for nav elements */
-    }
-
-  }
-
-  @media (max-width: 768px) {
-    .full-width-on-small {
-      width: 100%;
-    }
-  }
-  
  
+}
+
+/* Since the Navbar and Form have their own CSS files now,
+   we don't need specific styles for them here. */
+
+/* Adjust the container that wraps the content below the Navbar */
+.home > .container {
+  flex: 1; /* Grow to take available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space between content and footer */
+  padding-top: 56px; /* Adjust based on the navbar's height */
+  padding-bottom: 56px; /* Space for footer */
+}
+
+/* Footer Styles */
+.custom-footer {
+  background-color: #1B1B1B; /* Dark background color */
+  color: #FFFFFF; /* White text color */
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .home > .container {
+    padding-top: 56px; /* Adjust if the Navbar height changes on mobile */
+  }
+}

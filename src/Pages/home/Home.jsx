@@ -4,9 +4,9 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
-import NavigationBar from './NevigationBar';
-import ReservationForm from './ReservationForm';
-import Footer from './Footer';
+import NavigationBar from '../../component/NevigationBar';
+import ReservationForm from '../../component/ReservationForm';
+import Footer from '../../component/Footer';
 
 const Home = () => {
 const isMobile = window.innerWidth < 768;
