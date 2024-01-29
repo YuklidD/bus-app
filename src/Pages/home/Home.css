@@ -98,6 +98,7 @@ html, body {
   .btn-outline-primary {
     width: auto; /* Adjust width as necessary, could be 100% or auto based on your design */
     margin-top: 1rem; /* Ensure there's space above the button */
+    color: #7749F8;
   }
   
   .btn-outline-primary:hover {
@@ -109,6 +110,7 @@ html, body {
   .areYouASection {
     margin-top: 10rem; /* This will push the section towards the footer but within the content area */
     margin-bottom: 1rem; /* Add some space below the section */
+
   }
   
   .custom-footer {
