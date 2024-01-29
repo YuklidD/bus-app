@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import './App.css'
-import Home from './Pages/home/Home.jsx'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/home/Home';
+import LoginPage from './Pages/login/LoginPage';
 
 
 function App() {
@@ -8,7 +10,13 @@ function App() {
 
   return (
     <>
-      <Home/>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* Add other routes here */}
+      </Routes>
+    </Router>
     </>
   )
 }

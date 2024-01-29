@@ -31,7 +31,7 @@ html, body {
     color: var(--navbar-text-color) !important;
     position: fixed;
     width: 100%; /* Full width */
-    z-index: 1; /* Ensures navbar stays on top */
+    z-index: 1050; /* Ensures navbar stays on top */
   }
   
   
@@ -44,6 +44,10 @@ html, body {
   .navbar-nav .nav-link:hover {
     color: var(--primary-color-hover) !important;
   }
+
+  .form-element {
+    z-index: 1; /* or 'auto' if you don't need to set a specific z-index */
+}
   /* Override Bootstrap's primary background color */
   .bg-primary {
     background-color: var(--primary-color) !important;
@@ -103,7 +107,11 @@ html, body {
     margin-bottom: 1rem; /* Add some space below the section */
   }
   
-
+  .custom-footer {
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+    padding: 20px 0;
+  }
   @media (max-width: 768px) {
     .areYouASection {
       position: static; /* Change the position for mobile view */
@@ -117,6 +125,7 @@ html, body {
       /* Adjustments for mobile navbar */
       padding: 10px 0; /* Reduce padding to save space */
       text-align: center; /* Center the navbar elements */
+      z-index: 1050;
     }
   
     .navbar-brand,
@@ -125,9 +134,11 @@ html, body {
     }
 
   }
- 
-  .custom-footer {
-    background-color: #1B1B1B;
-    color: #FFFFFF;
-    padding: 20px 0;
+
+  @media (max-width: 768px) {
+    .full-width-on-small {
+      width: 100%;
+    }
   }
+  
+ 

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Container, Navbar, Nav, Form, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Navbar, Nav, Form, Button, Row, Col, InputGroup, FormControl} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import Footer from './Footer';
+import LoginPage from '../login/LoginPage';
 
 const Home = () => {
   const isMobile = window.innerWidth < 768;
@@ -14,10 +16,15 @@ const Home = () => {
           <Navbar.Brand href="#home">Bus Schedule</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">
+            <Nav className="me-auto">
               <Nav.Link href="#features">Features</Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
+            <Link to="/login" className="nav-link">
+                <Button variant="outline-light" className="ms-lg-auto full-width-on-small">
+                  Login
+              </Button>
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
