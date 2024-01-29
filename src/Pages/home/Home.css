@@ -1,4 +1,6 @@
 /* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 :root {
   --primary-color: #7749F8;
   --primary-color-hover: #2d00a9; /* Slightly darker shade for hover states */
@@ -9,12 +11,14 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  
 }
 
 .home {
   min-height: 100vh; /* Full viewport height minimum */
   display: flex;
   flex-direction: column; /* Stack children vertically */
+  font-family: 'Roboto', sans-serif;
 }
 
 .home > .container {

@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 /* Footer.css */
 .footer {
   width: 100%;
   position: relative; /* Adjusted from absolute to relative */
+  font-family: 'Roboto', sans-serif;
 }
 
 
@@ -13,9 +16,8 @@
   text-align: center; /* Center-align text for good measure */
 }
 
-.footer-section h5 {
-  color: #FFFFFF; /* Keeping titles white */
-  padding-bottom: 10px; /* Spacing below titles */
+.footer-section h5:not(:first-of-type) {
+  margin-top: 20px;
 }
 
 .footer-section ul {
@@ -41,9 +43,9 @@
     }
   }
   
-  .icon-pack {
+  .download-icons, .social-icons {
     display: flex;
-    justify-content: center; /* This centers the icons horizontally */
-    gap: 20px; /* Adjust the space between icons */
-    margin-top: 10px; /* Add some top margin to create space between the title and the icons */
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px; /* Add some space below each icon group */
   }

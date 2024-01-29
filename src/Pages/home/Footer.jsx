@@ -28,19 +28,21 @@ const Footer = () => {
             </ul>
           </Col>
           <Col md={3} sm={6} xs={12} className="footer-section">
-            {/* Assuming column 3 content */}
-            <h5>DOWNLOAD ON</h5>
-            <div className="icon-pack">
+            <h5>Download On</h5>
+            <div className="icon-pack download-icons">
               <FontAwesomeIcon icon={faAppStore} size="2x" />
               <FontAwesomeIcon icon={faGooglePlay} size="2x" />
+            </div>
+            <h5>Connect With Us</h5>
+            <div className="icon-pack social-icons">
               <FontAwesomeIcon icon={faFacebook} size="2x" />
               <FontAwesomeIcon icon={faWhatsapp} size="2x" />
             </div>
           </Col>
           <Col md={3} sm={6} xs={12} className="footer-section">
             {/* Assuming column 4 content */}
-            <p>Company Address Here</p>
-            <p>Hotline: 1315</p>
+            <h5>Company Address Here</h5>
+            <p>Hotline: 1015</p>
             <p>Email: info@example.com</p>
           </Col>
         </Row>
