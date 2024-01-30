@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import NavigationBar from '../../component/NevigationBar'; // Update the path as necessary
 import './Login.css'; // Assuming you have a separate CSS file for login page styles
 import AlertModal from '../../Modal/AlertModal';
+import Footer from '../../component/Footer';
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -68,6 +70,7 @@ const LoginPage = () => {
         handleClose={handleCloseModal} 
         message="Password has been reset and sent to your email."
       />
+      <Footer></Footer>
     </>
   );
 };
