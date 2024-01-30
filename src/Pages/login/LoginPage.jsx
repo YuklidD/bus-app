@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavigationBar from '../../component/NevigationBar'; // Update the path as necessary
 import './Login.css'; // Assuming you have a separate CSS file for login page styles
-
+import AlertModal from '../../Modal/AlertModal';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleLogin = (event) => {
     event.preventDefault();
     // Handle login logic here
-    console.log(username, password);
+  };
+
+  const handleForgotPassword = (event) => {
+    event.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -50,10 +59,15 @@ const LoginPage = () => {
           </div>
 
           <div className="text-center mt-2">
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Link to="/forgot-password" onClick={handleForgotPassword}>Forgot password?</Link>
           </div>
         </Form>
       </Container>
+      <AlertModal 
+        show={showModal} 
+        handleClose={handleCloseModal} 
+        message="Password has been reset and sent to your email."
+      />
     </>
   );
 };
