@@ -1,10 +1,10 @@
 /* LoginPage.css */
 
-.login-container {
+.signup-container{
     min-height: calc(100vh - 56px); /* 100vh minus the navbar height */
   }
   
-  .signup-form {
+  .login-form {
     width: 100%;
     max-width: 330px; /* Width of the form */
     padding: 15px;
