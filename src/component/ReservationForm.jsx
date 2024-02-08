@@ -43,28 +43,26 @@ const ReservationForm = () => {
         <Row>
           <Col xs={12} md={6}>
             <InputGroup className="mb-3">
-              <FormControl
-                placeholder="From"
+              <Form.Select
                 aria-label="From"
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
-              />
-              <Button variant="outline-secondary" id="button-addon1">
-                Select
-              </Button>
+              >
+                <option value="">Select From</option>
+                {/* Add your options here */}
+              </Form.Select>
             </InputGroup>
           </Col>
           <Col xs={12} md={6}>
             <InputGroup className="mb-3">
-              <FormControl
-                placeholder="To"
+              <Form.Select
                 aria-label="To"
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
-              />
-              <Button variant="outline-secondary" id="button-addon2">
-                Select
-              </Button>
+              >
+                <option value="">Select To</option>
+                {/* Add your options here */}
+              </Form.Select>
             </InputGroup>
           </Col>
         </Row>
