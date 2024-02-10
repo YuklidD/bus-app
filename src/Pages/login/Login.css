@@ -10,6 +10,9 @@
   flex-direction: column;
   justify-content: center;
 }
+.login-section .login-form h2  {
+  font-weight: bold;
+}
 
 .google-btn {
   background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
@@ -45,11 +48,13 @@
 
 .image-section {
   /* Image covers the full section without any space */
-  height: 100vh;
+  height: 100%;
+  margin-top: -15px;
   min-height: 100%;
 }
 
 .image-section img {
+  
   width: 100%; /* Ensure the image is full width */
   height: 100%; /* Ensure the image is full height */
   object-fit: cover; /* Cover the entire area without stretching */

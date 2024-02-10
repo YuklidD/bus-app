@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios'; // Import axios for HTTP requests
 import './Reservation.css';
+import { Link } from 'react-router-dom';
+
 
 const ReservationForm = () => {
 	const [from, setFrom] = useState('');
@@ -9,6 +11,8 @@ const ReservationForm = () => {
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
 	const [fromOptions, setFromOptions] = useState([]);
+	
+
 
 	useEffect(() => {
 		const fetchFromOptions = async () => {
@@ -108,10 +112,11 @@ const ReservationForm = () => {
 						/>
 					</Col>
 				</Row>
-
+				<Link to='/buslist'>
 				<Button variant="primary" size="lg" className="mb-4 w-100" type="submit">
 					Check
 				</Button>
+				</Link>
 			</Form>
 
 			<div className="areYouASection">
