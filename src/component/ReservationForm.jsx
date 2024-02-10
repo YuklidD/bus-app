@@ -49,6 +49,8 @@ const ReservationForm = () => {
                 onChange={(e) => setFrom(e.target.value)}
               >
                 <option value="">Select From</option>
+                <option value="">Select From</option>
+                <option value="">Select From</option>
                 {/* Add your options here */}
               </Form.Select>
             </InputGroup>
