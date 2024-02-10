@@ -1,15 +1,51 @@
-/* LoginPage.css */
+.login-page {
+  /* Removed padding to allow content to extend to the edges */
+}
 
-.login-container {
-    min-height: calc(100vh - 56px); /* 100vh minus the navbar height */
+.login-section .login-form {
+  /* Center form content and adjust properly to the screen size */
+  max-width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-section {
+  /* Image covers the full section without any space */
+  height: 100vh;
+  min-height: 100%;
+}
+
+.image-section img {
+  width: 100%; /* Ensure the image is full width */
+  height: 100%; /* Ensure the image is full height */
+  object-fit: cover; /* Cover the entire area without stretching */
+}
+
+/* Adjust footer to ensure it sticks to the bottom */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  /* No specific styles needed here unless there are other adjustments for this viewport size */
+}
+
+@media (max-width: 768px) {
+  .login-section {
+    /* Optional margin-top can be added if needed */
   }
-  
-  .signup-form {
-    width: 100%;
-    max-width: 330px; /* Width of the form */
-    padding: 15px;
-    margin: auto;
+
+  .image-section {
+    /* Hide the image on smaller screens */
+    display: none;
   }
-  
-  /* Additional styles if needed */
-  
+
+  .login-form {
+    padding: 1rem; /* Reduced padding on smaller screens */
+  }
+}
