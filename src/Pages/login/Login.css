@@ -11,6 +11,36 @@
   justify-content: center;
 }
 
+.google-btn {
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+    linear-gradient(0deg, #7749F8, #7749F8);
+}
+
+/* Or Line */
+
+.or-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 23px; /* Adjust the gap as needed to match your design */
+}
+
+.line {
+  width: 100px; /* Adjust the width as needed to match your design */
+  height: 1px; /* This creates a solid line */
+  background-color: #6EA8FE; /* This is the blue color from your code snippet */
+}
+
+.or-text {
+  color: #6EA8FE; /* This is the blue color from your code snippet */
+  font-family: 'Inter', sans-serif; /* Ensure this font is loaded in your project */
+  font-size:small;
+  line-height: 15px; /* This affects the height of the text */
+}
+
+
 .image-section {
   /* Image covers the full section without any space */
   height: 100vh;

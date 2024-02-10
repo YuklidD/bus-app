@@ -78,9 +78,13 @@ const LoginPage = () => {
           Login
         </Button>
 
-        <div className="text-center">or</div>
+        <div className="or-container">
+          <div className="line"></div>
+            <span className="or-text">or</span>
+          <div className="line"></div>
+        </div>
 
-        <Button variant="light" className="w-100 google-btn">
+        <Button variant="outline-primary" className="mb-4 w-100">
           Login with Google
         </Button>
 
