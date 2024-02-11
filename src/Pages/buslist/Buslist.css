@@ -5,11 +5,22 @@
   --primary-color-hover: #2d00a9;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-  padding-top: 70px; /* Adjust this value to the height of your fixed navbar */
+body, html {
+  height: 100%; /* Make sure the html and body are full height */
+  margin: 0; /* Reset default margin */
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use the viewport height */
+}
+.main-content {
+  flex: 1; /* This will allow the main content to expand and push the footer down */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px; /* Adjust this value to the height of your footer */
+}
 
 
 /* You can adjust these styles to match the exact design shown in your image */
@@ -55,6 +66,11 @@ body {
     justify-content: center;
    background-color: #CFF4FC;
 
+  }
+ .text-center p{
+    font-weight: 500;
+    font-size: larger;
+    padding-top: 20px;
   }
 
   

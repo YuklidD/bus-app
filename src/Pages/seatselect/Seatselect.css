@@ -1,0 +1,57 @@
+/* SelectSeatPage.css */
+.select-seat-page {
+    padding-top: 70px; /* Adjust this value based on the actual height of your NavigationBar */
+    padding-bottom: 70px; /* Adjust this value based on the actual height of your Footer */
+    min-height: calc(100vh - 140px); /* This ensures that the page content is at least the height of the viewport minus the NavigationBar and Footer */
+  }
+  
+  /* Ensure the footer is at the bottom of the page */
+  .footer {
+    width: 100%;
+    /* If you are using a sticky footer, you might not need to adjust this */
+  }
+
+.bus-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .seat {
+    display: inline-block;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; /* Center text vertically */
+    cursor: pointer;
+   -webkit-user-select: none; /* Prevent text selection */
+  }
+  
+  .driver-seat {
+    height: 40px;
+    /* Add additional styling for the driver's area */
+  }
+  
+  .bus-middle {
+    width: 100%;
+    height: 20px;
+    /* Add styling for the bus middle space */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .exit-row .seat {
+    /* Special styling for the last row if needed */
+  }
+  
+  .col {
+    flex: 0 0 auto; /* Don't grow or shrink */
+  }
+  
+  /* Add media queries and additional styling as needed */
+  
