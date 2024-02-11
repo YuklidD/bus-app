@@ -15,6 +15,11 @@ const ReservationForm = () => {
 			try {
 				const response = await axios.get('http://localhost:4000/api/route');
 				setFromOptions(response.data);
+				const uniqueOptions = fromOptions.filter((option, index, self) =>
+					index === self.findIndex((o) => (
+						o.valuw === option.value // Assuming _id is the unique identifier
+					))
+				);
 			} catch (error) {
 				console.error('Failed to fetch options:', error);
 			}
@@ -36,7 +41,7 @@ const ReservationForm = () => {
 		try {
 			// Replace '/api/reservations' with your actual backend API endpoint for creating reservations
 			const response = await axios.post('/api/reservations', reservationData);
-			console.log(response.data); // Handle the response as needed
+
 			// Optionally reset form fields here
 			setFrom('');
 			setTo('');
