@@ -43,6 +43,7 @@ const SelectSeatPage = () => {
             <div className="bus">
               <div className="bus-section entrance">Entrance</div>
               <Row className="justify-content-center">
+
                 <Col xs={5}>
                   <div className="seats-column">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -84,7 +85,7 @@ const SelectSeatPage = () => {
               </Row>
             </div>
           </Col>
-          <Col md={4}>
+          <Col md={6} lg={3} xl={2}>
             <div className="checkout-section">
               <h4>Bus No: {busId}</h4>
               <div>Please select your seats for reservation</div>
@@ -104,7 +105,7 @@ const SelectSeatPage = () => {
                   <Button variant="outline-primary" disabled>
                     -
                   </Button>
-                  <span className="mx-2">{selectedSeats.length}</span>
+                  <div className="mx-2 count">{selectedSeats.length}</div>
                   <Button variant="outline-primary" disabled>
                     +
                   </Button>

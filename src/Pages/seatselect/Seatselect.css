@@ -1,9 +1,13 @@
 /* SelectSeatPage.css */
 .select-seat-page {
-    padding-top: 70px; /* Adjust this value based on the actual height of your NavigationBar */
-    padding-bottom: 70px; /* Adjust this value based on the actual height of your Footer */
-    min-height: calc(100vh - 140px); /* This ensures that the page content is at least the height of the viewport minus the NavigationBar and Footer */
-  }
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange children in a row */
+  padding-top: 70px; /* Adjust this value based on the actual height of your NavigationBar */
+  padding-bottom: 70px; /* Adjust this value based on the actual height of your Footer */
+  min-height: calc(100vh - 140px); /* Adjusted height calculation */
+  justify-content: center; /* Center children horizontally */
+  align-items: stretch; /* Stretch children to fill the container height */
+}
   
   /* Ensure the footer is at the bottom of the page */
   .footer {
@@ -53,5 +57,79 @@
     flex: 0 0 auto; /* Don't grow or shrink */
   }
   
-  /* Add media queries and additional styling as needed */
+ 
+
+  
+  .bus-container {
+    border: 2px solid #7749F8; /* Adjust color as needed */
+    border-radius: 8px; /* Rounded corners for the bus layout */
+    padding: 20px; /* Add padding to prevent content from touching the borders */
+    
+  }
+  
+  .driver-seat {
+    background-color: #007bff; /* Bootstrap primary color for the driver seat */
+    color: #ffffff; /* White text color */
+    padding: 10px 20px;
+    margin-bottom: 20px; /* Space after the driver seat */
+    text-align: center;
+    border-radius: 50%; /* Circle shape */
+    width: 60px; /* Fixed width */
+    height: 60px; /* Fixed height */
+    line-height: 60px; /* Center text vertically */
+    display: inline-block; /* Necessary for widths to take effect */
+  }
+
+  /* SelectSeatPage.css */
+.checkout-section {
+  background-color: #ffffff; /* Or any color that fits your design */
+  padding: 20px; /* Adjust padding to your preference */
+
+  width: 600%; /* Full width of the column it's in */
+}
+
+/* Styles for badges to make them look like buttons */
+.badge-pill {
+  width: auto;
+  padding: 10px 15px; /* Adjust to your preference */
+  cursor: pointer;
+}
+
+/* Styles for the seat count control */
+.seat-count-control {
+  display: flex;
+  height: 50px;
+  margin-top: 15px; /* Space above the seat count control */
+}
+
+.count{
+  padding-top: 20px;
+  font-size: large;
+  
+}
+/* Styles for the checkout button */
+.checkout-button {
+  background-color: #6200ea; /* Example primary color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px; /* Space above the checkout button */
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners for the button */
+  width: 100%; /* Full width of the button */
+}
+
+/* Ensure that the badges and button text are not selectable */
+.badge-pill, .checkout-button {
+ -webkit-user-select: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .checkout-section {
+    max-width: 400px; /* Maximum width on larger screens */
+    margin-top: 0; /* Reset margin top for larger screens */
+  }
+}
+
   
