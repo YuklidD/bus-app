@@ -28,6 +28,7 @@ const LoginPage = () => {
             localStorage.setItem('username', response.data.username)
             setError('') // Clear any previous error
             navigate('/') // Redirect to the home page or dashboard using navigate
+            window.location.reload()
         } catch (err) {
             // Handle errors (e.g., user not found, wrong password)
             setError('Invalid username or password')
