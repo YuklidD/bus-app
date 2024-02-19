@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap'
 import axios from 'axios' // Import axios for HTTP requests
 import './Reservation.css'
+import api from '../axiosConfig'
 
 const ReservationForm = () => {
     const [from, setFrom] = useState('')
@@ -23,9 +24,7 @@ const ReservationForm = () => {
     useEffect(() => {
         const fetchFromOptions = async () => {
             try {
-                const response = await axios.get(
-                    'http://localhost:4000/api/route'
-                )
+                const response = await api.get('route')
                 setRawData(response.data)
 
                 const uniqueFromOptions = response.data.filter(

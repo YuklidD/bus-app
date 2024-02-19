@@ -6,6 +6,7 @@ import NavigationBar from '../../component/NevigationBar'
 import './Signup.css' // Assuming you have a separate CSS file for the signup page
 import AlertModal from '../../Modal/AlertModal' // For showing alert modals if needed
 import Footer from '../../component/Footer'
+import api from '../../axiosConfig'
 
 const SignupPage = () => {
     const [name, setName] = useState('')
@@ -21,7 +22,7 @@ const SignupPage = () => {
 
         try {
             // Replace '/api/users/signup' with your actual backend API endpoint for user registration
-            const response = await axios.post('/api/users/signup', {
+            const response = await api.post('users/signup', {
                 name,
                 email,
                 password,
