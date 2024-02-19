@@ -8,7 +8,7 @@ const ReservationForm = () => {
 	const [to, setTo] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
-	const [fromOptions, setFromOptions] = useState([]);
+	const [fromOptions, setFromOptions] = useState([]); 
 
     useEffect(() => {
         const fetchFromOptions = async () => {
