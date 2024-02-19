@@ -9,7 +9,7 @@ import Footer from '../../component/Footer'
 import api from '../../axiosConfig'
 
 const SignupPage = () => {
-    const [name, setName] = useState('')
+    const [username, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
@@ -22,8 +22,8 @@ const SignupPage = () => {
 
         try {
             // Replace '/api/users/signup' with your actual backend API endpoint for user registration
-            const response = await api.post('users/signup', {
-                name,
+            const response = await api.post('user/signup', {
+                username,
                 email,
                 password,
             })
@@ -59,8 +59,8 @@ const SignupPage = () => {
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Enter name"
-                            value={name}
+                            placeholder="Enter Username"
+                            value={username}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </Form.Group>
@@ -85,7 +85,10 @@ const SignupPage = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword" className="mb-3">
+                    <Form.Group
+                        controlId="formBasicRePassword"
+                        className="mb-3"
+                    >
                         <Form.Label>Re-Password</Form.Label>
                         <Form.Control
                             type="password"
