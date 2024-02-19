@@ -1,62 +1,29 @@
-<>
-  <NavigationBar showLoginButton={false} />
-  <Container fluid className="login-page">
-    <Row className="justify-content-center align-items-center min-vh-100">
-      <Col xs={12} md={6} className="login-section d-flex align-items-center justify-content-center">
-        <Form className="login-form text-center" onSubmit={handleLogin}>
-          <h2>Welcome back!</h2>
-          <p>Login to get your seats reserved.</p>
-          {error && <div className="alert alert-danger">{error}</div>}
-          <Form.Group controlId="formBasicEmail" className="mb-3">
-          <Form.Control
-            type="email"
-            placeholder="Email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
+    { id: 1, time: '10:33 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 2, time: '11:00 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 3, time: '10:33 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 4, time: '11:00 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 5, time: '10:33 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 6, time: '11:00 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 7, time: '10:33 am', description: 'With supporting text below as a natural lead-in to additional content.' },
+    { id: 8, time: '11:00 am', description: 'With supporting text below as a natural lead-in to additional content.' },
 
-        <Form.Group controlId="formBasicPassword" className="mb-3">
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
 
-        <Form.Group className="mb-3 d-flex justify-content-between">
-          <Form.Check type="checkbox" label="Remember me" />
-          <Link to="/forgot-password" onClick={handleForgotPassword} className="forgot-password">
-            Forgot Password?
-          </Link>
-        </Form.Group>
-
-        <Button variant="primary" type="submit" className="w-100 mb-3">
-          Login
-        </Button>
-
-        <div className="text-center">or</div>
-
-        <Button variant="light" className="w-100 google-btn">
-          Login with Google
-        </Button>
-
-        <div className="text-center mt-3">
-          <span>Don't have an account? </span>
-          <Link to="/register" className="register-link">Create one</Link>
-        </div>
-      </Form>
-      </Col>
-      <Col md={6} className="image-section d-none d-md-block">
-        <img src="src/assets/loginImage.jpeg" alt="Login Visual" className="img-fluid" />
-      </Col>
-    </Row>
-  </Container>
-  <AlertModal 
-    show={showModal} 
-    handleClose={handleCloseModal} 
-    message="Password reset functionality needs to be implemented on the backend."
-  />
-  <Footer />
-</>
+     <Col md={4}>
+          <div className="checkout-section">
+            <h4>Bus No: {busId}</h4>
+            <div>Please select your seats for reservation</div>
+            <Badge pill bg="primary" className="m-1">Available</Badge>
+            <Badge pill bg="secondary" className="m-1">Booked</Badge>
+            <Badge pill bg="success" className="m-1">Selected</Badge>
+            <div className="mt-3">
+              <h5>Price per seat: Rs. 60.00</h5>
+              <h5>Total: Rs. {selectedSeats.length * 60}.00</h5>
+              <div className="seat-count-control">
+                <Button variant="outline-primary" disabled>-</Button>
+                <span className="mx-2">{selectedSeats.length}</span>
+                <Button variant="outline-primary" disabled>+</Button>
+              </div>
+              <Button variant="primary" className="mt-2">Checkout</Button>
+            </div>
+          </div>
+        </Col>
