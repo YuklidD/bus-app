@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios'; // Import axios for HTTP requests
 import './Reservation.css';
-import { Link } from 'react-router-dom';
-
 
 const ReservationForm = () => {
 	const [from, setFrom] = useState('');
@@ -11,84 +9,123 @@ const ReservationForm = () => {
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
 	const [fromOptions, setFromOptions] = useState([]);
-	
 
+    useEffect(() => {
+        const fetchFromOptions = async () => {
+            try {
+                const response = await api.get('route')
+                setRawData(response.data)
 
-	useEffect(() => {
-		const fetchFromOptions = async () => {
-			try {
-				const response = await axios.get('http://localhost:4000/api/route');
-				setFromOptions(response.data);
-			} catch (error) {
-				console.error('Failed to fetch options:', error);
-			}
-		};
+                const uniqueFromOptions = response.data.filter(
+                    (option, index, self) =>
+                        index ===
+                        self.findIndex((o) => o.origin === option.origin)
+                )
+                setFromOptions(uniqueFromOptions)
 
-		fetchFromOptions();
-	}, []);
-	const handleSubmit = async (e) => {
-		e.preventDefault(); // Prevent default form submission behavior
+                const uniqueToOptions = response.data.filter(
+                    (option, index, self) =>
+                        index ===
+                        self.findIndex(
+                            (o) => o.destination === option.destination
+                        )
+                )
+                setToOptions(uniqueToOptions)
+            } catch (error) {
+                console.error('Failed to fetch options:', error)
+            }
+        }
 
-		// Construct the reservation data
-		const reservationData = {
-			from,
-			to,
-			date,
-			time,
-		};
+        fetchFromOptions()
+    }, [])
+    const handleSubmit = async (e) => {
+        e.preventDefault() // Prevent default form submission behavior
 
-		try {
-			// Replace '/api/reservations' with your actual backend API endpoint for creating reservations
-			const response = await axios.post('/api/reservations', reservationData);
-			console.log(response.data); // Handle the response as needed
-			// Optionally reset form fields here
-			setFrom('');
-			setTo('');
-			setDate('');
-			setTime('');
-			// Further actions upon successful submission (e.g., show a success message)
-		} catch (error) {
-			console.error('Failed to submit reservation:', error);
-			// Handle errors, e.g., display an error message to the user
-		}
-	};
+        // Construct the reservation data
+        const reservationData = {
+            from,
+            to,
+            date,
+            time,
+        }
 
-	return (
-		<>
-			<Form onSubmit={handleSubmit}>
-				<h5 className="destination mb-3">Destination</h5>
-				<Row>
-					<Col xs={12} md={6}>
-						<InputGroup className="mb-3">
-							<Form.Select
-								aria-label="From"
-								value={from}
-								onChange={(e) => setFrom(e.target.value)}
-							>
-								{fromOptions.map((option, index) =>  (
-									<option key={option._id} value={option._id}>
-										{option.origin}
-									</option>
-								))}
-							</Form.Select>
-						</InputGroup>
-					</Col>
-					<Col xs={12} md={6}>
-						<InputGroup className="mb-3">
-							<Form.Select
-								aria-label="To"
-								value={to}
-								onChange={(e) => setTo(e.target.value)}
-							>
-								{fromOptions.map((option, index) =>  (
-									<option key={option._id} value={option._id}>
-										{option.destination}
-									</option>
-								))}
-							</Form.Select>
-						</InputGroup>
-					</Col>
-				</Row>
+        try {
+            // Replace '/api/reservations' with your actual backend API endpoint for creating reservations
+            const response = await axios.post(
+                '/api/reservations',
+                reservationData
+            )
+
+            // Optionally reset form fields here
+            setFrom('')
+            setTo('')
+            setDate('')
+            setTime('')
+            // Further actions upon successful submission (e.g., show a success message)
+        } catch (error) {
+            console.error('Failed to submit reservation:', error)
+            // Handle errors, e.g., display an error message to the user
+        }
+    }
+
+    return (
+        <>
+            <Form onSubmit={handleSubmit}>
+                <h5 className="destination mb-3">Route Selection</h5>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <InputGroup className="mb-3">
+                            <Form.Select
+                                aria-label="From"
+                                value={from}
+                                onChange={(e) => {
+                                    setFrom(e.target.value)
+                                    toSelectionElement.current.disabled = false
+
+                                    const uniqueOptions = rawData.filter(
+                                        (option, index, self) =>
+                                            index ===
+                                            self.findIndex(
+                                                (o) =>
+                                                    o.origin ===
+                                                        e.target.value &&
+                                                    o.destination ===
+                                                        option.destination
+                                            )
+                                    )
+
+                                    setToOptions(uniqueOptions)
+                                }}
+                            >
+                                {fromOptions.map((option, index) => (
+                                    <option
+                                        key={option._id}
+                                        value={option.origin}
+                                    >
+                                        {option.origin}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                        </InputGroup>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <InputGroup className="mb-3">
+                            <Form.Select
+                                aria-label="To"
+                                value={to}
+                                onChange={(e) => setTo(e.target.value)}
+                                disabled={true}
+                                ref={toSelectionElement}
+                            >
+                                {toOptions.map((option, index) => (
+                                    <option key={option._id} value={option._id}>
+                                        {option.destination}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                        </InputGroup>
+                    </Col>
+                </Row>
 
 				<h5 className="dateTime mb-3">Date & Time</h5>
 				<Row>
@@ -112,21 +149,20 @@ const ReservationForm = () => {
 						/>
 					</Col>
 				</Row>
-				<Link to='/buslist'>
+
 				<Button variant="primary" size="lg" className="mb-4 w-100" type="submit">
 					Check
 				</Button>
-				</Link>
 			</Form>
 
-			<div className="areYouASection">
-				<h5 className="areYouA mb-3">Are you a bus owner?</h5>
-				<Button variant="outline-primary" size="lg" className="w-100">
-					Add your bus
-				</Button>
-			</div>
-		</>
-	);
-};
+            <div className="areYouASection">
+                <h5 className="areYouA mb-3">Are you a bus owner?</h5>
+                <Button variant="outline-primary" size="lg" className="w-100">
+                    Add your bus
+                </Button>
+            </div>
+        </>
+    )
+}
 
-export default ReservationForm;
+export default ReservationForm
