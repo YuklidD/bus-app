@@ -83,7 +83,7 @@ const ReservationForm = () => {
     return (
         <>
             <Form onSubmit={handleSubmit}>
-                <h5 className="destination mb-3">Destination</h5>
+                <h5 className="destination mb-3">Route Selection</h5>
                 <Row>
                     <Col xs={12} md={6}>
                         <InputGroup className="mb-3">
