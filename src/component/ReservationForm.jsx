@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
-import axios from 'axios'; // Import axios for HTTP requests
-import './Reservation.css';
+import React, { useState, useEffect, useRef } from 'react'
+import {
+    Form,
+    Button,
+    Row,
+    Col,
+    InputGroup,
+    FormControl,
+} from 'react-bootstrap'
+import axios from 'axios' // Import axios for HTTP requests
+import './Reservation.css'
+import api from '../axiosConfig'
 
 const ReservationForm = () => {
-	const [from, setFrom] = useState('');
-	const [to, setTo] = useState('');
-	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
-	const [fromOptions, setFromOptions] = useState([]); 
+    const [from, setFrom] = useState('')
+    const [to, setTo] = useState('')
+    const [date, setDate] = useState('')
+    const [time, setTime] = useState('')
+    const [rawData, setRawData] = useState([])
+    const [fromOptions, setFromOptions] = useState([])
+    const [toOptions, setToOptions] = useState([])
+    const toSelectionElement = useRef(null)
 
     useEffect(() => {
         const fetchFromOptions = async () => {
@@ -127,33 +138,38 @@ const ReservationForm = () => {
                     </Col>
                 </Row>
 
-				<h5 className="dateTime mb-3">Date & Time</h5>
-				<Row>
-					<Col xs={12} sm={6}>
-						<FormControl
-							type="date"
-							placeholder="Date"
-							aria-label="Date"
-							className="mb-3"
-							value={date}
-							onChange={(e) => setDate(e.target.value)}
-						/>
-					</Col>
-					<Col xs={12} sm={6}>
-						<FormControl
-							type="time"
-							placeholder="Time"
-							aria-label="Time"
-							value={time}
-							onChange={(e) => setTime(e.target.value)}
-						/>
-					</Col>
-				</Row>
+                <h5 className="dateTime mb-3">Date & Time</h5>
+                <Row>
+                    <Col xs={12} sm={6}>
+                        <FormControl
+                            type="date"
+                            placeholder="Date"
+                            aria-label="Date"
+                            className="mb-3"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </Col>
+                    <Col xs={12} sm={6}>
+                        <FormControl
+                            type="time"
+                            placeholder="Time"
+                            aria-label="Time"
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                    </Col>
+                </Row>
 
-				<Button variant="primary" size="lg" className="mb-4 w-100" type="submit">
-					Check
-				</Button>
-			</Form>
+                <Button
+                    variant="primary"
+                    size="lg"
+                    className="mb-4 w-100"
+                    type="submit"
+                >
+                    Check
+                </Button>
+            </Form>
 
             <div className="areYouASection">
                 <h5 className="areYouA mb-3">Are you a bus owner?</h5>
