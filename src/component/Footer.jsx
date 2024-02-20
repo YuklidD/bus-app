@@ -46,7 +46,7 @@ const Footer = () => {
         </Row>
         <Row>
           <Col xs={12} className="text-center mt-3">
-            <p>©2024 Company Name. All rights reserved</p>
+            <p>©2024 Japura Alpha. All rights reserved</p>
           </Col>
         </Row>
       </Container>

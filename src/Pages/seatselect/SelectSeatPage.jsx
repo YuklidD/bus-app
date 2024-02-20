@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Badge, Container, Row, Col, Button } from 'react-bootstrap';
 import './Seatselect.css'; // Your CSS file
-import NavigationBar from '../../component/NevigationBar';
+import NavigationBar from '../../component/NavigationBar';
 import Footer from '../../component/Footer';
 
 const SelectSeatPage = () => {

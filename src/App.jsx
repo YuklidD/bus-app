@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/home/Home';
 import LoginPage from './Pages/login/LoginPage';
 import SignupPage from './Pages/signup/SignupPage';
+import BusList from './Pages/buslist/BusList';
+import SelectSeatPage from './Pages/seatselect/SelectSeatPage';
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage />} />
+        <Route path="/buslist" element={<BusList/>} />
+        <Route path="/seatselect" element={<SelectSeatPage/>} />
         {/* Add other routes here */}
       </Routes>
     </Router>

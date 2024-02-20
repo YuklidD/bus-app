@@ -4,7 +4,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
-import NavigationBar from '../../component/NevigationBar';
+import NavigationBar from '../../component/NavigationBar';
 import ReservationForm from '../../component/ReservationForm';
 import Footer from '../../component/Footer';
 

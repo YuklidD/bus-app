@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom' // useNavigate instead of useHistory
 import axios from 'axios' // For sending HTTP requests to your backend
-import NavigationBar from '../../component/NevigationBar'
+import NavigationBar from '../../component/NavigationBar'
 import './Signup.css' // Assuming you have a separate CSS file for the signup page
 import AlertModal from '../../Modal/AlertModal' // For showing alert modals if needed
 import Footer from '../../component/Footer'

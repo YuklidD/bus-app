@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom' // Use useNavigate instead of useHistory
 import axios from 'axios' // import axios for HTTP requests
-import NavigationBar from '../../component/NevigationBar'
+import NavigationBar from '../../component/NavigationBar'
 import './Login.css'
 import AlertModal from '../../Modal/AlertModal'
 import Footer from '../../component/Footer'

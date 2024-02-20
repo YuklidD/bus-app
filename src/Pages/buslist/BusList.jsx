@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Container, Row, Col, Badge } from 'react-bootstrap';
 import './Buslist.css';
-import NavigationBar from '../../component/NevigationBar';
+import NavigationBar from '../../component/NavigationBar';
 import Footer from '../../component/Footer';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 

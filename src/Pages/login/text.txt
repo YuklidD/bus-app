@@ -27,3 +27,9 @@
             </div>
           </div>
         </Col>
+
+
+// NavigationBar.defaultProps = {
+//     showLoginButton: true,
+//     accountFound: localStorage.getItem('username') !== null ? true : false,
+// }
