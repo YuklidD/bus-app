@@ -87,28 +87,37 @@ const ReservationForm = () => {
                     <Col xs={12} md={6}>
                         <InputGroup className="mb-3">
                             <Form.Select
-                                className="custom-select" 
+                                className="custom-select"
                                 aria-label="From"
                                 value={from}
                                 onChange={(e) => {
-                                    const selectedFrom = e.target.value;
-                                    setFrom(selectedFrom);
-                                    toSelectionElement.current.disabled = selectedFrom === '';
+                                    const selectedFrom = e.target.value
+                                    setFrom(selectedFrom)
+                                    toSelectionElement.current.disabled =
+                                        selectedFrom === ''
 
                                     // Assuming rawData is an array with all possible combinations
                                     const uniqueOptions = rawData.filter(
-                                        (option) =>
-                                            option.origin === selectedFrom
-                                    );
+                                        (option, index, self) =>
+                                            index ===
+                                            self.findIndex(
+                                                (o) =>
+                                                    o.origin === selectedFrom &&
+                                                    o.destination ===
+                                                        option.destination
+                                            )
+                                    )
 
                                     // Update the 'to' options based on the 'from' selection
-                                    setToOptions(uniqueOptions);
+                                    setToOptions(uniqueOptions)
 
                                     // Reset 'to' selection when 'from' changes
-                                    setTo('');
+                                    setTo('')
                                 }}
                             >
-                                <option value="" disabled>From</option>
+                                <option value="" disabled>
+                                    From
+                                </option>
                                 {fromOptions.map((option) => (
                                     <option
                                         key={option._id}
@@ -123,16 +132,21 @@ const ReservationForm = () => {
                     <Col xs={12} md={6}>
                         <InputGroup className="mb-3">
                             <Form.Select
-                                className="custom-select" 
+                                className="custom-select"
                                 aria-label="To"
                                 value={to}
                                 onChange={(e) => setTo(e.target.value)}
                                 disabled={toOptions.length === 0} // Disabled if no 'to' options are available
                                 ref={toSelectionElement}
                             >
-                                <option value="" disabled>To</option>
+                                <option value="" disabled>
+                                    To
+                                </option>
                                 {toOptions.map((option) => (
-                                    <option key={option._id} value={option.destination}>
+                                    <option
+                                        key={option._id}
+                                        value={option.destination}
+                                    >
                                         {option.destination}
                                     </option>
                                 ))}
@@ -163,14 +177,13 @@ const ReservationForm = () => {
                         />
                     </Col>
                 </Row>
-                
+
                 <Button
                     variant="primary"
                     size="lg"
                     className="mb-4 w-100 button-check"
                     type="submit"
                 >
-                    
                     Check
                 </Button>
             </Form>
