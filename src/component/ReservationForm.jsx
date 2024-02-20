@@ -7,7 +7,7 @@ import {
     InputGroup,
     FormControl,
 } from 'react-bootstrap'
-import axios from 'axios' // Import axios for HTTP requests
+import axios from 'axios'
 import './Reservation.css'
 import api from '../axiosConfig'
 
@@ -50,9 +50,8 @@ const ReservationForm = () => {
         fetchFromOptions()
     }, [])
     const handleSubmit = async (e) => {
-        e.preventDefault() // Prevent default form submission behavior
+        e.preventDefault()
 
-        // Construct the reservation data
         const reservationData = {
             from,
             to,
@@ -61,21 +60,17 @@ const ReservationForm = () => {
         }
 
         try {
-            // Replace '/api/reservations' with your actual backend API endpoint for creating reservations
             const response = await axios.post(
                 '/api/reservations',
                 reservationData
             )
 
-            // Optionally reset form fields here
             setFrom('')
             setTo('')
             setDate('')
             setTime('')
-            // Further actions upon successful submission (e.g., show a success message)
         } catch (error) {
             console.error('Failed to submit reservation:', error)
-            // Handle errors, e.g., display an error message to the user
         }
     }
 
@@ -96,7 +91,6 @@ const ReservationForm = () => {
                                     toSelectionElement.current.disabled =
                                         selectedFrom === ''
 
-                                    // Assuming rawData is an array with all possible combinations
                                     const uniqueOptions = rawData.filter(
                                         (option, index, self) =>
                                             index ===
@@ -108,10 +102,8 @@ const ReservationForm = () => {
                                             )
                                     )
 
-                                    // Update the 'to' options based on the 'from' selection
                                     setToOptions(uniqueOptions)
 
-                                    // Reset 'to' selection when 'from' changes
                                     setTo('')
                                 }}
                             >
@@ -136,7 +128,7 @@ const ReservationForm = () => {
                                 aria-label="To"
                                 value={to}
                                 onChange={(e) => setTo(e.target.value)}
-                                disabled={toOptions.length === 0} // Disabled if no 'to' options are available
+                                disabled={toOptions.length === 0}
                                 ref={toSelectionElement}
                             >
                                 <option value="" disabled>

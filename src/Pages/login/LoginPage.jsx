@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom' // Use useNavigate instead of useHistory
-import axios from 'axios' // import axios for HTTP requests
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import NavigationBar from '../../component/NavigationBar'
 import './Login.css'
 import AlertModal from '../../Modal/AlertModal'
@@ -11,9 +11,10 @@ import api from '../../axiosConfig'
 const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('') // For displaying login error messages
+    const [error, setError] = useState('')
     const [showModal, setShowModal] = useState(false)
-    const navigate = useNavigate() // useNavigate hook to navigate
+    const [remember, setRemember] = useState(false)
+    const navigate = useNavigate()
 
     const handleLogin = async (event) => {
         event.preventDefault()
@@ -22,15 +23,18 @@ const LoginPage = () => {
                 username,
                 password,
             })
-            console.log(response.data)
-            // Assuming your backend sends back a token and/or user details in response
-            // Save the token in localStorage or in a global state/context
+
+            if (response.status != 200) {
+                setError('Something went wrong when loggin in. Try again.')
+                return
+            }
+
             localStorage.setItem('username', response.data.username)
-            setError('') // Clear any previous error
-            navigate('/') // Redirect to the home page or dashboard using navigate
+
+            setError('')
+            navigate('/')
             window.location.reload()
         } catch (err) {
-            // Handle errors (e.g., user not found, wrong password)
             setError('Invalid username or password')
         }
     }
@@ -101,6 +105,10 @@ const LoginPage = () => {
                                 <Form.Check
                                     type="checkbox"
                                     label="Remember me"
+                                    checked={remember}
+                                    onChange={(e) => {
+                                        setRemember(e.target.checked)
+                                    }}
                                 />
                                 <Link
                                     to="/forgot-password"
