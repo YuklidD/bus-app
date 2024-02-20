@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom' // useNavigate instead of useHistory
-import axios from 'axios' // For sending HTTP requests to your backend
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import NavigationBar from '../../component/NavigationBar'
-import './Signup.css' // Assuming you have a separate CSS file for the signup page
-import AlertModal from '../../Modal/AlertModal' // For showing alert modals if needed
+import './Signup.css'
+import AlertModal from '../../Modal/AlertModal'
 import Footer from '../../component/Footer'
 import api from '../../axiosConfig'
 
@@ -13,31 +13,72 @@ const SignupPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
-    const [error, setError] = useState('') // To display any error messages
-    const [showModal, setShowModal] = useState(false) // Optional, if you have modal-based alerts
+    const [error, setError] = useState('')
+    const [showModal, setShowModal] = useState(false)
     const navigate = useNavigate()
 
     const handleSignup = async (e) => {
         e.preventDefault()
 
         try {
-            // Replace '/api/users/signup' with your actual backend API endpoint for user registration
+            if (password.length <= 7) {
+                setError('Password should contain minimum 8 charactors.')
+                setPassword('')
+                setRePassword('')
+                return
+            }
+
+            if (password !== rePassword) {
+                setError('Passwords do not match. Try again.')
+                setRePassword('')
+                return
+            }
+
+            /* The code snippet `let users = await api.get('user/accounts', {})
+            users = users.data.map((obj) => obj.email)` is making an API call to fetch a list of
+            user accounts from the backend server. */
+            let users = await api.get('user/accounts', {})
+            users = users.data.map((obj) => obj.email)
+
+            /* This part of the code is checking if the email entered by the user during signup already
+            exists in the list of user accounts fetched from the backend server. */
+            if (users.includes(email)) {
+                setError('This user is already registered. Login instead.')
+                setEmail('')
+                return
+            }
+
             const response = await api.post('user/signup', {
                 username,
                 email,
                 password,
             })
-            console.log(response.data) // Handle response data as needed
-            // Reset form state
+
+            /* This part of the code snippet is checking the status of the response received after
+            making a POST request to register a user. */
+            /* The code snippet `if (response.status != 200) { setError('Something went wrong when
+            registering the user. Try again.') setRePassword('') return }` is checking the status of
+            the response received after attempting to register a user. */
+            if (response.status != 200) {
+                setError(
+                    'Something went wrong when registering the user. Try again.'
+                )
+                setRePassword('')
+                return
+            }
+
             setName('')
             setEmail('')
             setPassword('')
+            setRePassword('')
             setError('')
-            // Optionally, show a success modal or navigate to the login page
-            // setShowModal(true); // If you want to show a confirmation modal
-            navigate('/login') // Redirect user to login page after successful signup
+
+            /* `navigate('/login')` is a function call that uses the `useNavigate` hook from React
+            Router. It is used to programmatically navigate the user to the '/login' route in the
+            application. In this context, after a successful user signup, the function is
+            redirecting the user to the login page for further actions. */
+            navigate('/login')
         } catch (err) {
-            // Handle errors such as email already in use, weak password, etc.
             setError(
                 err.response.data.message || 'An error occurred during signup.'
             )
