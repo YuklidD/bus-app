@@ -14,12 +14,34 @@
   font-weight: bold;
 }
 
-.google-btn {
-  background: linear-gradient(0deg, #FFFFFF, #FFFFFF),
-    linear-gradient(0deg, #7749F8, #7749F8);
-    font-weight: 200;
-    
+/* GoogleLoginButton.css */
+
+.btn-outline-primary {
+  color: #7749F8 !important; /* Primary color text */
+  font-weight:500 !important; /* Make the text bold */
+  border: 2px solid #7749F8 !important; /* Primary color border */
+  border-radius: 6px  !important;
+  background: transparent !important; /* Transparent background initially */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: auto !important;
+  width: 100% !important;
+  margin-top: 1rem !important;
+  margin-bottom: 4px !important;
+  transition: background-color 0.3s, color 0.3s !important; /* Smooth transition */
 }
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background: linear-gradient(0deg, #7749F8, #7749F8) !important; /* Background on hover/focus/active */
+  color: #FFF !important; /* Text color to white for contrast */
+  border-color: #7749F8 !important; /* Maintain the same border color */
+}
+
+
+
 
 /* Or Line */
 
