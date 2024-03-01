@@ -193,7 +193,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
 
                             <GoogleLogin
                                 clientId="113855965035-po9atl5spvi5t39lvfkmvb019ccpon4a.apps.googleusercontent.com"
-                                buttonText="Login with Google"
+                                buttonText="Link with Google"
                                 onSuccess={handleGoogleLogin}
                                 onFailure={(error) => {
                                     // Here, you can handle the error more gracefully
