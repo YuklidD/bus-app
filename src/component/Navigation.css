@@ -19,6 +19,11 @@
 .navbar-nav .nav-link {
   color: var(--navbar-text-color) !important;
 }
+.brand-name {
+  font-weight: bold;
+  font-size: 1.5rem; /* Adjust the size as needed */
+}
+
 
 .navbar-brand:hover,
 .navbar-nav .nav-link:hover {

@@ -12,7 +12,7 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md={3} sm={6} xs={12} className="footer-section">
-            <h5><Link to="/login" className="footer-link">Login</Link></h5> {/* Make "Login" a link */}
+            <h5><Link to="/authentication" className="footer-link">Login</Link></h5> {/* Make "Login" a link */}
             <ul>
               <li><Link to="/send-ticket" className="footer-link">Send Ticket</Link></li> {/* Assuming "/send-ticket" is the route */}
               <li><Link to="/transfer-ticket" className="footer-link">Transfer Ticket</Link></li> {/* Assuming "/transfer-ticket" is the route */}

@@ -11,7 +11,7 @@ const NavigationBar = ({ showLoginButton }) => {
     const handleLogout = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('permenent')
-        navigate('/login')
+        navigate('/authentication')
         window.location.reload()
     }
 
@@ -27,12 +27,14 @@ const NavigationBar = ({ showLoginButton }) => {
             className="navbar"
         >
             <Container>
-                <Navbar.Brand as={Link} to="/">
-                    Bus Schedule
+                <Navbar.Brand as={Link} to="/" >
+                    <div className='brand-name'>
+                     GoBus
+                     </div>
                 </Navbar.Brand>
                 <Nav className="me-auto"></Nav>
                 {!isLoggedIn && showLoginButton && (
-                    <Link to="/login" className="nav-link">
+                    <Link to="/authentication" className="nav-link">
                         <Button
                             variant="outline-light"
                             className="ms-lg-auto full-width-on-small"
