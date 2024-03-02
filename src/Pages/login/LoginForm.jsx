@@ -143,7 +143,7 @@ const LoginForm = ({ onSwitchToRegister  }) => {
 
             <GoogleLogin
             clientId="113855965035-po9atl5spvi5t39lvfkmvb019ccpon4a.apps.googleusercontent.com"
-            buttonText="Login with Google"
+            buttonText={<span className="google-btn-text">Login with Google</span>}
             onSuccess={handleGoogleLogin}
             onFailure={(error) => {
                 // Here, you can handle the error more gracefully
@@ -157,7 +157,7 @@ const LoginForm = ({ onSwitchToRegister  }) => {
             <div className="text-center mt-3">
                 <span>Don't have an account? </span>
                 <Button variant="link" className="register-link" onClick={onSwitchToRegister }>
-                    Create one
+                    Create one →
                 </Button>
             </div>
             </Form>

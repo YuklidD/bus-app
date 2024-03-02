@@ -140,7 +140,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
                             </Form.Group>
-
+                                <br></br>
                             <Form.Group className="mb-3">
                                 <Form.Control
                                     type="email"
@@ -171,11 +171,18 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
                             <Form.Group className="mb-3 d-flex justify-content-between">
                                 <Form.Check
                                     type="checkbox"
-                                    label="Agree with Terms & Conditions"
+                                    label={
+                                    <>
+                                        Agree with{' '}
+                                        <Link to="/terms-and-conditions" className="terms-link">
+                                        Terms & Conditions
+                                        </Link>
+                                    </>
+                                    }
                                     checked={termsAccepted}
                                     onChange={(e) => setTermsAccepted(e.target.checked)}
                                 />
-                            </Form.Group>
+                                </Form.Group>
 
                             <Button
                                 variant="primary"
@@ -193,7 +200,7 @@ const RegistrationForm = ({ onSwitchToLogin }) => {
 
                             <GoogleLogin
                                 clientId="113855965035-po9atl5spvi5t39lvfkmvb019ccpon4a.apps.googleusercontent.com"
-                                buttonText="Link with Google"
+                                buttonText={<span className="google-btn-text">Link with Google</span>}
                                 onSuccess={handleGoogleLogin}
                                 onFailure={(error) => {
                                     // Here, you can handle the error more gracefully
