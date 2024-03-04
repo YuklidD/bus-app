@@ -65,6 +65,7 @@
     border-radius: 8px; /* Rounded corners for the bus layout */
     padding: 20px; /* Add padding to prevent content from touching the borders */
     
+    
   }
   
   .driver-seat {
@@ -124,11 +125,77 @@
  -webkit-user-select: none;
 }
 
+.available-badge{
+  background-color: #D1E7DD !important;
+  color:  #0A3622;
+}
+.booked-badge{
+  background-color: #F8D7DA !important;
+  color:  #58151C;
+  ;
+}
+
+.selected-badge{
+  background-color:  #FFF3CD !important;
+  color: #664D03;
+}
+
+.custom-busId-badge {
+  border-radius: 4px !important;
+  background-color: #CFF4FC !important;
+  color: #055160;
+  
+  
+}
+
+.price-section {
+  padding-top: 300px; /* Adjust this value as needed for space above the price section */
+  justify-content: space-between; /* This will put space between the Total and the buttons */
+  
+}
+
+.seat-control-button {
+  font-size: 1.25rem; /* Larger font size for buttons */
+  width: 31px; /* Adjust width as necessary */
+  height: 32px; /* Adjust height as necessary */
+
+}
+
+.count {
+  font-size: 18px; /* Larger font size for the count */
+}
+
+.checkout-button {
+  width: 100%; /* Full width button */
+  padding: 10px; /* Larger padding for better touch */
+  font-size: 14px; /* Larger font size for checkout text */
+  height: 40px; /* Adjust height as necessary */
+}
+
+
+
+
+
 /* Responsive adjustments */
 @media (min-width: 768px) {
   .checkout-section {
     max-width: 400px; /* Maximum width on larger screens */
     margin-top: 0; /* Reset margin top for larger screens */
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .bus-container {
+    padding: 30px; /* Increase padding for larger devices */
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .bus-container {
+    padding: 40px; /* Further increase padding for desktops */
+    border-radius: 10px; /* Slightly larger rounded corners for a subtle effect */
   }
 }
 
