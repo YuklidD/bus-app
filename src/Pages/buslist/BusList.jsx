@@ -3,73 +3,72 @@ import { Card, Button, Container, Row, Col, Badge } from 'react-bootstrap'
 import './Buslist.css'
 import NavigationBar from '../../component/NavigationBar'
 import Footer from '../../component/Footer'
-import { useNavigate, useParams } from 'react-router-dom' // Import useNavigate
+import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../axiosConfig'
 import { formatDistance } from 'date-fns'
 
 const BusList = () => {
-    const navigate = useNavigate() // Initialize navigate function
-    const { data } = useParams() // Get the data from URL parameters
+    const navigate = useNavigate()
+    const { data } = useParams()
     const decodedData = decodeURIComponent(data)
     const parsedData = JSON.parse(decodedData)
     const [buses, setBuses] = useState([])
 
     useEffect(() => {
         const updateBuses = async () => {
-            let response = await api.get('route')
-            response = response.data
+            try {
+                let response = await api.get('route')
+                response = response.data
 
-            for (const key in response) {
-                let element = response[key]
+                for (const key in response) {
+                    let element = response[key]
 
-                if (
-                    element.origin === parsedData.from &&
-                    element.destination === parsedData.to
-                ) {
-                    response = await api.get(`schedule/${element._id}`)
-                    console.log(`schedule/${element._id}`)
-                    response = response.data
+                    if (
+                        element.origin === parsedData.from &&
+                        element.destination === parsedData.to
+                    ) {
+                        response = await api.get(`schedule/${element._id}`)
+                        response = response.data
 
-                    let busList = []
+                        let busList = []
 
-                    await response.forEach((schedule) => {
-                        let busData = {
-                            _id: schedule._id,
-                            origin: element.origin,
-                            destination: element.destination,
-                            departure: schedule.departure,
-                            arrival: schedule.arrival,
-                            seats: schedule.seats,
-                            price: element.price,
-                        }
+                        response.forEach((schedule) => {
+                            let busData = {
+                                _id: schedule._id,
+                                origin: element.origin,
+                                destination: element.destination,
+                                departure: new Date(schedule.departure),
+                                arrival: schedule.arrival,
+                                seats: schedule.seats,
+                                price: element.price,
+                            }
 
-                        busData.departure = new Date(busData.departure)
-                        var currentDate = new Date()
+                            busData.departure = new Date(busData.departure)
+                            var currentDate = new Date()
 
-                        busData.departure.setFullYear(currentDate.getFullYear())
-                        busData.departure.setMonth(currentDate.getMonth())
-                        busData.departure.setDate(currentDate.getDate())
+                            busData.departure.setFullYear(
+                                currentDate.getFullYear()
+                            )
+                            busData.departure.setMonth(currentDate.getMonth())
+                            busData.departure.setDate(currentDate.getDate())
 
-                        console.log(busData.departure)
-
-                        const isoSeconds = isoToSeconds(schedule.departure)
-                        const otherSeconds = timeToSeconds(parsedData.time)
-
-                        if (isoSeconds > otherSeconds) {
                             busList.push(busData)
-                        }
-                    })
+                        })
 
-                    console.log(busList)
+                        // Sorting buses by departure time
+                        busList.sort((a, b) => a.departure - b.departure)
 
-                    setBuses(busList)
-                    break
+                        setBuses(busList)
+                        break
+                    }
                 }
+            } catch (error) {
+                console.error('Error fetching data: ', error)
             }
         }
 
         updateBuses()
-    }, [parsedData.from, parsedData.to]) // Add dependencies to rerun effect when these values change
+    }, [parsedData.from, parsedData.to, parsedData.time])
 
     const handleReserveSeatClick = (busId) => {
         navigate(`/select-seat/${busId}`)
@@ -79,8 +78,6 @@ const BusList = () => {
         <>
             <NavigationBar />
             <div className="main-content">
-                {' '}
-                {/* Use the main-content class to flex the content */}
                 <Container className="mt-5 pt-3">
                     <Row className="mb-4">
                         <Col>
@@ -104,20 +101,24 @@ const BusList = () => {
                                         <Card.Body>
                                             <Card.Title className="bus-time">
                                                 {bus.departure
-                                                    .toISOString()
-                                                    .substring(11, 19)}
+                                                    .toString()
+                                                    .substring(16, 21)}
                                                 {' • '}
-                                                {formatDistance(
-                                                    new Date(bus.departure),
-                                                    new Date(),
-                                                    { addSuffix: true }
-                                                )}
+                                                <span className="timestamp">
+                                                    {formatDistance(
+                                                        new Date(bus.departure),
+                                                        new Date(),
+                                                        {
+                                                            addSuffix: true,
+                                                        }
+                                                    )}
+                                                </span>
                                             </Card.Title>
                                             <Card.Text>
-                                                Starting from {bus.origin} and
-                                                will be arrived to{' '}
-                                                {bus.destination} at about{' '}
-                                                {bus.arrival.substring(11, 16)}
+                                                Departing from {bus.origin}, the
+                                                journey is expected to reach{' '}
+                                                {bus.destination} around{' '}
+                                                {bus.arrival.substring(11, 16)}.
                                             </Card.Text>
                                             <Button
                                                 variant="primary"
@@ -139,8 +140,7 @@ const BusList = () => {
                         <div className="text-center">
                             <p>
                                 Sorry, there are no buses available right now in
-                                the route you searched.
-                                <br />
+                                the route you searched. <br />
                                 Please try another date or change the Departure
                                 & Arrival point & search again.
                             </p>
@@ -157,6 +157,7 @@ const BusList = () => {
     )
 }
 
+// Function to convert ISO time to seconds
 function isoToSeconds(isoTime) {
     const date = new Date(isoTime)
     const hours = date.getUTCHours()
@@ -165,6 +166,7 @@ function isoToSeconds(isoTime) {
     return hours * 3600 + minutes * 60 + seconds
 }
 
+// Function to convert time string to seconds
 function timeToSeconds(time) {
     const [hours, minutes] = time.split(':').map(Number)
     return hours * 3600 + minutes * 60
