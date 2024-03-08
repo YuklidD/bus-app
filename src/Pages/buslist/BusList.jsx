@@ -71,7 +71,7 @@ const BusList = () => {
     }, [parsedData.from, parsedData.to, parsedData.time])
 
     const handleReserveSeatClick = (busId) => {
-        navigate(`/select-seat/${busId}`)
+        navigate(`/seatselect/${busId}`)
     }
 
     return (
