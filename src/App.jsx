@@ -7,10 +7,10 @@ import SignupPage from './Pages/signup/SignupPage'
 import BusList from './Pages/buslist/BusList'
 import SelectSeatPage from './Pages/seatselect/SelectSeatPage'
 import RegistrationPage from './Pages/login/RegistrationForm'
+import Dashboard from './Pages/dashboard/Dashboard';
 
 function App() {
     const [count, setCount] = useState(0)
-
     return (
         <>
             <Router>
@@ -19,6 +19,7 @@ function App() {
                     <Route path="/authentication" element={<LoginPage />} />
                     <Route path="/buslist/:data" element={<BusList />} />
                     <Route path="/seatselect" element={<SelectSeatPage />} />
+                     <Route path="/dashboard" element={<Dashboard/>} />
                 </Routes>
             </Router>
         </>
