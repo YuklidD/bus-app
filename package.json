@@ -19,11 +19,8 @@
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
-<<<<<<< HEAD
     "react-oauth": "^0.0.1",
     "react-oauth-google": "^0.9.0",
-=======
->>>>>>> 7917e6b9f0a0135f08e630d6529c575c33c9fe76
     "react-router-dom": "^6.21.3"
   },
   "devDependencies": {
