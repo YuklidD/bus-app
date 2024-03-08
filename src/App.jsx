@@ -6,7 +6,7 @@ import LoginPage from './Pages/login/LoginPage';
 import SignupPage from './Pages/signup/SignupPage';
 import BusList from './Pages/buslist/BusList';
 import SelectSeatPage from './Pages/seatselect/SelectSeatPage';
-
+import Dashboard from './Pages/dashboard/Dashboard';
 
 function App() {
     const [count, setCount] = useState(0)
@@ -20,6 +20,7 @@ function App() {
         <Route path="/register" element={<SignupPage />} />
         <Route path="/buslist" element={<BusList/>} />
         <Route path="/seatselect" element={<SelectSeatPage/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
         {/* Add other routes here */}
       </Routes>
     </Router>
