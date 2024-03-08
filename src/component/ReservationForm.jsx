@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
     Form,
     Button,
@@ -20,6 +21,7 @@ const ReservationForm = () => {
     const [fromOptions, setFromOptions] = useState([])
     const [toOptions, setToOptions] = useState([])
     const toSelectionElement = useRef(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchFromOptions = async () => {
@@ -49,8 +51,8 @@ const ReservationForm = () => {
 
         fetchFromOptions()
     }, [])
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const handleReservationRequest = async (e) => {
+        //e.preventDefault()
 
         const reservationData = {
             from,
@@ -60,10 +62,18 @@ const ReservationForm = () => {
         }
 
         try {
-            const response = await axios.post(
-                '/api/reservations',
-                reservationData
-            )
+            if (
+                from.length > 0 &&
+                to.length > 0 &&
+                from.length > 0 &&
+                time.length > 0
+            ) {
+                navigate(
+                    `/buslist/${encodeURIComponent(
+                        JSON.stringify(reservationData)
+                    )}`
+                )
+            }
 
             setFrom('')
             setTo('')
@@ -76,7 +86,7 @@ const ReservationForm = () => {
 
     return (
         <>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleReservationRequest}>
                 <h5 className="destination mb-3">Route Selection</h5>
                 <Row>
                     <Col xs={12} md={6}>
@@ -175,6 +185,9 @@ const ReservationForm = () => {
                     size="lg"
                     className="mb-4 w-100 button-check"
                     type="submit"
+                    onClick={(e) => {
+                        handleReservationRequest()
+                    }}
                 >
                     Check
                 </Button>
