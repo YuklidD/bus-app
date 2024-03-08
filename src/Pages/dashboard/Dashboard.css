@@ -1,17 +1,4 @@
-nav {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    color: white;
-  }
-  
-  nav a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    padding: 14px 16px;
-    display: block;
-  }
-  
+
   .content {
     display: flex;
     justify-content: space-between;
@@ -83,7 +70,6 @@ h1{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Inter;
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -99,7 +85,6 @@ h1{
 }
 
 .link-card{
-  font-family: Inter;
   font-size: 12px;
   font-weight: 400;
   line-height: 15px;
