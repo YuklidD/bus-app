@@ -5,6 +5,7 @@ import NavigationBar from '../../component/NavigationBar'
 import Footer from '../../component/Footer'
 import { useNavigate, useParams } from 'react-router-dom' // Import useNavigate
 import api from '../../axiosConfig'
+import { formatDistance } from 'date-fns'
 
 const BusList = () => {
     const navigate = useNavigate() // Initialize navigate function
@@ -42,13 +43,24 @@ const BusList = () => {
                             price: element.price,
                         }
 
-						const isoSeconds = isoToSeconds(schedule.departure)
+                        busData.departure = new Date(busData.departure)
+                        var currentDate = new Date()
+
+                        busData.departure.setFullYear(currentDate.getFullYear())
+                        busData.departure.setMonth(currentDate.getMonth())
+                        busData.departure.setDate(currentDate.getDate())
+
+                        console.log(busData.departure)
+
+                        const isoSeconds = isoToSeconds(schedule.departure)
                         const otherSeconds = timeToSeconds(parsedData.time)
 
                         if (isoSeconds > otherSeconds) {
-							busList.push(busData)
-						}
+                            busList.push(busData)
+                        }
                     })
+
+                    console.log(busList)
 
                     setBuses(busList)
                     break
@@ -91,9 +103,14 @@ const BusList = () => {
                                     <Card className="bus-card" key={bus._id}>
                                         <Card.Body>
                                             <Card.Title className="bus-time">
-                                                {bus.departure.substring(
-                                                    11,
-                                                    16
+                                                {bus.departure
+                                                    .toISOString()
+                                                    .substring(11, 19)}
+                                                {' • '}
+                                                {formatDistance(
+                                                    new Date(bus.departure),
+                                                    new Date(),
+                                                    { addSuffix: true }
                                                 )}
                                             </Card.Title>
                                             <Card.Text>
@@ -141,16 +158,16 @@ const BusList = () => {
 }
 
 function isoToSeconds(isoTime) {
-    const date = new Date(isoTime);
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    const seconds = date.getUTCSeconds();
-    return hours * 3600 + minutes * 60 + seconds;
+    const date = new Date(isoTime)
+    const hours = date.getUTCHours()
+    const minutes = date.getUTCMinutes()
+    const seconds = date.getUTCSeconds()
+    return hours * 3600 + minutes * 60 + seconds
 }
 
 function timeToSeconds(time) {
-    const [hours, minutes] = time.split(':').map(Number);
-    return hours * 3600 + minutes * 60;
+    const [hours, minutes] = time.split(':').map(Number)
+    return hours * 3600 + minutes * 60
 }
 
 export default BusList
