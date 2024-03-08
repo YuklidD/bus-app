@@ -2,15 +2,15 @@
   /* Removed padding to allow content to extend to the edges */
 }
 
-.login-section .login-form {
+.auth-section .login-form {
   /* Center form content and adjust properly to the screen size */
-  max-width: 100%;
+  width: 75% !important;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.login-section .login-form h2  {
+.auth-section .login-form h2  {
   font-weight: bold;
 }
 
@@ -40,7 +40,14 @@
   border-color: #7749F8 !important; /* Maintain the same border color */
 }
 
+.google-btn-text{
+font-size: 14px;
+font-weight: 600;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: left;
 
+}
 
 
 /* Or Line */
@@ -68,19 +75,6 @@
 }
 
 
-.image-section {
-  /* Image covers the full section without any space */
-  height: 100%;
-  margin-top: -15px;
-  min-height: 100%;
-}
-
-.image-section img {
-  
-  width: 100%; /* Ensure the image is full width */
-  height: 100%; /* Ensure the image is full height */
-  object-fit: cover; /* Cover the entire area without stretching */
-}
 
 /* Adjust footer to ensure it sticks to the bottom */
 .footer {
@@ -89,10 +83,68 @@
   width: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 991px) {
-  /* No specific styles needed here unless there are other adjustments for this viewport size */
+/* Login.css */
+.image-section {
+  position: relative;
+  overflow: hidden;
 }
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.registration-form  {
+  max-width: 500px;
+  padding: 20px; 
+}
+
+.login-link,.register-link,.forgot-password,.terms-link{
+  color: inherit;
+  text-decoration: black underline; 
+  
+  
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .registration-form  {
+    max-width: 90%; /* Make the form wider on small screens */
+    padding: 10px; /* Adjust padding */
+  }
+}
+
+/* You can add more breakpoints for finer control */
+@media (max-width: 480px) {
+  .registration-form  {
+    max-width: 100%; /* Optional: make the form take full width on very small screens */
+  }
+}
+
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .image-section {
+    /* Example: Adjust the height on smaller screens if necessary */
+    height: 100vh; /* Adjust based on your design preference */
+    
+  }
+
+  .image-section img {
+    height: 100%;
+  }
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 1024px) {
+  .image-section {
+    /* Keep full height or any other adjustments for larger screens */
+    height: 100vh;
+    
+  }
+}
+
 
 @media (max-width: 768px) {
   .login-section {
@@ -108,3 +160,5 @@
     padding: 1rem; /* Reduced padding on smaller screens */
   }
 }
+
+

@@ -22,6 +22,20 @@ const SelectSeatPage = () => {
     }
   };
 
+    // Example function to handle adding a seat (this might not directly correlate with selecting a seat visually)
+    const handleAddSeat = () => {
+      if (selectedSeats.length < MAX_SEATS) { // Assume MAX_SEATS is defined somewhere
+        // Logic to add a seat
+      }
+    };
+  
+    // Example function to handle removing a seat
+    const handleRemoveSeat = () => {
+      if (selectedSeats.length > 0) {
+        setSelectedSeats(selectedSeats.slice(0, -1)); // Removes the last seat from the selection
+      }
+    };
+
   // Create a component to represent individual seats
   const Seat = ({ number, status }) => (
     <Badge
@@ -86,36 +100,35 @@ const SelectSeatPage = () => {
             </div>
           </Col>
           <Col md={6} lg={3} xl={2}>
-            <div className="checkout-section">
-              <h4>Bus No: {busId}</h4>
-              <div>Please select your seats for reservation</div>
-              <Badge pill bg="primary" className="m-1">
-                Available
-              </Badge>
-              <Badge pill bg="secondary" className="m-1">
-                Booked
-              </Badge>
-              <Badge pill bg="success" className="m-1">
-                Selected
-              </Badge>
-              <div className="mt-3">
-                <h5>Price per seat: Rs. 60.00</h5>
-                <h5>Total: Rs. {selectedSeats.length * 60}.00</h5>
-                <div className="seat-count-control">
-                  <Button variant="outline-primary" disabled>
-                    -
-                  </Button>
-                  <div className="mx-2 count">{selectedSeats.length}</div>
-                  <Button variant="outline-primary" disabled>
-                    +
-                  </Button>
+              <div className="checkout-section">
+                <h4>Bus No: <Badge className="custom-busId-badge" pill bg="secondary">258AN</Badge></h4>
+                <div>Please select your seats for reservation</div>
+                <Badge pill bg="primary" className="m-1 available-badge">Available</Badge>
+                <Badge pill bg="secondary" className="m-1 booked-badge">Booked</Badge>
+                <Badge pill bg="success" className="m-1 selected-badge">Selected</Badge>
+                <div className="price-section"> {/* Removed mt-3 for top margin */}
+                  <h5>Price per seat:
+                    <Badge pill bg="secondary" className="ms-2 price-badge">Rs. 60.00</Badge>
+                  </h5>
+                  <div className="d-flex justify-content-between align-items-center">
+                  <h5>Total: <span className="total-amount">Rs. {selectedSeats.length * 60}.00</span></h5>
+                  <div className="seat-count-control d-flex align-items-center">
+                    <Button variant="outline-primary" onClick={handleRemoveSeat} className="seat-control-button mx-1">
+                      -
+                    </Button>
+                    <div className="count mx-2">{selectedSeats.length}</div>
+                    <Button variant="outline-primary" onClick={handleAddSeat} className="seat-control-button mx-1">
+                      +
+                    </Button>
+                  </div>
                 </div>
-                <Button variant="primary" className="mt-2">
-                  Checkout
-                </Button>
+
+                  <Button variant="primary" className="checkout-button">Checkout</Button>
+                </div>
               </div>
-            </div>
-          </Col>
+            </Col>
+
+
         </Row>
       </Container>
       <Footer />
