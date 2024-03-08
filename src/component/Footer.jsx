@@ -39,9 +39,11 @@ const Footer = () => {
             </div>
           </Col>
           <Col md={3} sm={6} xs={12} className="footer-section">
-            <h5>Company Address Here</h5>
+            <h5>Contact Us</h5>
+            <div className="lists">
             <p>Hotline: 1015</p>
-            <p>Email: <a href="mailto:info@example.com" className="footer-email">info@example.com</a></p> {/* Make the email clickable */}
+            <p>Email: <a href="mailto:info@example.com" className="footer-email">help@gobus.com</a></p> {/* Make the email clickable */}
+            </div>
           </Col>
         </Row>
         <Row>
