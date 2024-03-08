@@ -26,8 +26,31 @@ const BusList = () => {
                     element.destination === parsedData.to
                 ) {
                     response = await api.get(`schedule/${element._id}`)
+                    console.log(`schedule/${element._id}`)
                     response = response.data
-                    setBuses([response])
+
+                    let busList = []
+
+                    await response.forEach((schedule) => {
+                        let busData = {
+                            _id: schedule._id,
+                            origin: element.origin,
+                            destination: element.destination,
+                            departure: schedule.departure,
+                            arrival: schedule.arrival,
+                            seats: schedule.seats,
+                            price: element.price,
+                        }
+
+						const isoSeconds = isoToSeconds(schedule.departure)
+                        const otherSeconds = timeToSeconds(parsedData.time)
+
+                        if (isoSeconds > otherSeconds) {
+							busList.push(busData)
+						}
+                    })
+
+                    setBuses(busList)
                     break
                 }
             }
@@ -52,11 +75,11 @@ const BusList = () => {
                             <h4>
                                 Available buses on{' '}
                                 <Badge bg="info" className="badge-custom">
-                                    01/29
+                                    {parsedData.date}
                                 </Badge>{' '}
                                 from{' '}
                                 <Badge bg="info" className="badge-custom">
-                                    10.30 am
+                                    {parsedData.time}
                                 </Badge>
                             </h4>
                         </Col>
@@ -65,12 +88,20 @@ const BusList = () => {
                         <Row xs={1} md={2} lg={3} className="g-4">
                             {buses.map((bus) => (
                                 <Col key={bus._id}>
-                                    <Card className="bus-card">
+                                    <Card className="bus-card" key={bus._id}>
                                         <Card.Body>
                                             <Card.Title className="bus-time">
-                                                {bus.departure}
+                                                {bus.departure.substring(
+                                                    11,
+                                                    16
+                                                )}
                                             </Card.Title>
-                                            <Card.Text>{bus.arrival}</Card.Text>
+                                            <Card.Text>
+                                                Starting from {bus.origin} and
+                                                will be arrived to{' '}
+                                                {bus.destination} at about{' '}
+                                                {bus.arrival.substring(11, 16)}
+                                            </Card.Text>
                                             <Button
                                                 variant="primary"
                                                 className="w-100"
@@ -107,6 +138,19 @@ const BusList = () => {
             <Footer />
         </>
     )
+}
+
+function isoToSeconds(isoTime) {
+    const date = new Date(isoTime);
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+    const seconds = date.getUTCSeconds();
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+function timeToSeconds(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 3600 + minutes * 60;
 }
 
 export default BusList
