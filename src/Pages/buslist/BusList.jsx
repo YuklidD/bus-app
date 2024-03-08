@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Button, Container, Row, Col, Badge } from 'react-bootstrap'
 import './Buslist.css'
 import NavigationBar from '../../component/NavigationBar'
@@ -11,83 +11,30 @@ const BusList = () => {
     const { data } = useParams() // Get the data from URL parameters
     const decodedData = decodeURIComponent(data)
     const parsedData = JSON.parse(decodedData)
-    const [routeId, setRouteId] = useState('')
+    const [buses, setBuses] = useState([])
 
-    const updateBuses = async () => {
-        let response = await api.get('route')
-        response = response.data
+    useEffect(() => {
+        const updateBuses = async () => {
+            let response = await api.get('route')
+            response = response.data
 
-        for (const key in response) {
-            let element = response[key]
+            for (const key in response) {
+                let element = response[key]
 
-            if (
-                element.origin == parsedData.from &&
-                element.destination == parsedData.to
-            ) {
-                setRouteId(element._id)
-                break
+                if (
+                    element.origin === parsedData.from &&
+                    element.destination === parsedData.to
+                ) {
+                    response = await api.get(`schedule/${element._id}`)
+                    response = response.data
+                    setBuses([response])
+                    break
+                }
             }
         }
 
-        response = await api.get(`bus/${routeId}`)
-        response = response.data
-
-        console.log(response)
-    }
-
-    updateBuses()
-
-    // Mock data
-    const buses = [
-        {
-            id: 1,
-            time: '10:33 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 2,
-            time: '11:00 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 3,
-            time: '10:33 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 4,
-            time: '11:00 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 5,
-            time: '10:33 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 6,
-            time: '11:00 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 7,
-            time: '10:33 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-        {
-            id: 8,
-            time: '11:00 am',
-            description:
-                'With supporting text below as a natural lead-in to additional content.',
-        },
-    ]
+        updateBuses()
+    }, [parsedData.from, parsedData.to]) // Add dependencies to rerun effect when these values change
 
     const handleReserveSeatClick = (busId) => {
         navigate(`/select-seat/${busId}`)
@@ -103,7 +50,7 @@ const BusList = () => {
                     <Row className="mb-4">
                         <Col>
                             <h4>
-                                Available busses on{' '}
+                                Available buses on{' '}
                                 <Badge bg="info" className="badge-custom">
                                     01/29
                                 </Badge>{' '}
@@ -117,21 +64,19 @@ const BusList = () => {
                     {buses.length > 0 ? (
                         <Row xs={1} md={2} lg={3} className="g-4">
                             {buses.map((bus) => (
-                                <Col key={bus.id}>
+                                <Col key={bus._id}>
                                     <Card className="bus-card">
                                         <Card.Body>
                                             <Card.Title className="bus-time">
-                                                {bus.time}
+                                                {bus.departure}
                                             </Card.Title>
-                                            <Card.Text>
-                                                {bus.description}
-                                            </Card.Text>
+                                            <Card.Text>{bus.arrival}</Card.Text>
                                             <Button
                                                 variant="primary"
                                                 className="w-100"
                                                 onClick={() =>
                                                     handleReserveSeatClick(
-                                                        bus.id
+                                                        bus.busId
                                                     )
                                                 }
                                             >
