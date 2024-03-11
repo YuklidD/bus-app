@@ -22,25 +22,72 @@ html {
     flex-direction: column;
     padding-bottom: 70px; /* Adjust this value to the height of your footer */
 }
+.main-content h4{
+    font-size: 16px;
+}
 
 /* You can adjust these styles to match the exact design shown in your image */
 .bus-card {
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px #DEE2E6 solid;
+    height: 193px;
     margin-bottom: 1rem;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to top and button to bottom */
+    height: 100%; /* Ensures card takes full height */
 }
+
+
 
 .bus-card:hover {
     transform: translateY(-5px);
 }
 
-.bus-time {
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+.card-text{
+padding-top: 15px;
+font-family: Inter;
+font-size: 12px;
+font-weight: 400;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+
 }
+
+.bus-card .bus-time {
+    color: black; /* Ensures text is black */
+}
+
+.card-body {
+    display: flex; /* Enable flex layout */
+    flex-direction: column; /* Stack children vertically */
+    padding: 1rem; /* Adjust padding as needed */
+    /* Other styles... */
+}
+
+.card-content {
+    flex-grow: 1; /* This will push the button to the bottom */
+    padding-bottom: 1rem; /* Set this padding to create space above the button if needed */
+}
+
+.button-wrapper {
+    margin: 0 -.4rem -1rem -1.62rem; /* Assuming the .card-body has 1rem padding */
+    /* Removed padding-bottom as padding cannot be negative */
+    
+}
+
+.reserve-btn {
+    width: calc(100% + 2rem); /* Compensate for the horizontal negative margin */
+    display: block; /* Ensures it's displayed as a block element */
+    margin-bottom: 0; /* Ensure there is no bottom margin */
+    border-radius: 0 0 8px 8px;
+    font-size: 16px !important;
+    text-align: left;
+   
+}
+
 
 .btn-primary {
     background-color: var(--primary-color) !important;
@@ -59,12 +106,12 @@ html {
     font-weight: 600;
     font-size: 10px; /* Responsive font size if needed */
     line-height: 12px;
-    color: #055160; /* Cyan text color */
+    color: #055160 !important; /* Cyan text color */
     text-align: center;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #cff4fc;
+    background-color: #cff4fc !important;
 }
 .text-center p {
     font-weight: 500;

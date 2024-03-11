@@ -5,7 +5,8 @@ import NavigationBar from '../../component/NavigationBar'
 import Footer from '../../component/Footer'
 import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../axiosConfig'
-import { formatDistance } from 'date-fns'
+import { format, formatDistance } from 'date-fns';
+
 
 const BusList = () => {
     const navigate = useNavigate()
@@ -70,8 +71,10 @@ const BusList = () => {
         updateBuses()
     }, [parsedData.from, parsedData.to, parsedData.time])
 
+
     const handleReserveSeatClick = (busData) => {
         navigate(`/seatselect/${encodeURIComponent(JSON.stringify(busData))}`)
+
     }
 
     return (
@@ -98,30 +101,22 @@ const BusList = () => {
                             {buses.map((bus) => (
                                 <Col key={bus._id}>
                                     <Card className="bus-card" key={bus._id}>
-                                        <Card.Body>
-                                            <Card.Title className="bus-time">
-                                                {bus.departure
-                                                    .toString()
-                                                    .substring(16, 21)}
-                                                {' • '}
-                                                <span className="timestamp">
-                                                    {formatDistance(
-                                                        new Date(bus.departure),
-                                                        new Date(),
-                                                        {
-                                                            addSuffix: true,
-                                                        }
-                                                    )}
-                                                </span>
-                                            </Card.Title>
-                                            <Card.Text>
-                                                Departing from {bus.origin}, the
-                                                journey is expected to reach{' '}
-                                                {bus.destination} around{' '}
-                                                {bus.arrival.substring(11, 16)}.
-                                            </Card.Text>
+                                        <Card.Body className='card-body'>
+                                        <div className="card-content">
+                                        <Card.Title className="bus-time">
+                                            {format(new Date(bus.departure), 'hh:mm aaa')} {' • '}
+                                            <span className="timestamp">
+                                                {formatDistance(new Date(bus.departure), new Date(), { addSuffix: true })}
+                                            </span>
+                                        </Card.Title>
+                                        <Card.Text className='card-text'>
+                                            Departing from {bus.origin}, the journey is expected to reach {bus.destination} around {format(new Date(bus.arrival), 'hh:mm aaa')}.
+                                        </Card.Text>
+                                        </div>
+                                        <div className="button-wrapper">
                                             <Button
                                                 variant="primary"
+
                                                 className="w-100"
                                                 disable={
                                                     new Date(bus.departure) <
@@ -129,12 +124,14 @@ const BusList = () => {
                                                         ? 'true'
                                                         : 'false'
                                                 }
+
                                                 onClick={() =>
                                                     handleReserveSeatClick(bus)
                                                 }
                                             >
                                                 Reserve seat →
                                             </Button>
+                                            </div>
                                         </Card.Body>
                                     </Card>
                                 </Col>
