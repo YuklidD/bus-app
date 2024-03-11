@@ -1,4 +1,4 @@
-# Tripster
+# Tripster (GoBus)
 
 Tripster is a web application designed to streamline the process of booking bus tickets online. With Tripster, users can easily search for buses based on their origin, destination, and preferred travel date and time. The application provides a user-friendly interface for browsing available buses, selecting seats, and completing the reservation process.
 
