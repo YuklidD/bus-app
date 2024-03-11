@@ -42,6 +42,8 @@
   height: 139px; 
   overflow-y: auto; 
   border: 0cm;
+  margin-bottom: 2rem;
+  left: 30px;
   
 }
 
@@ -111,3 +113,36 @@ h1{
 
 
 
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .left-column, .right-column {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  h1, h5 {
+    font-size: smaller;
+  }
+
+  .account-settings-link {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .upcoming-bookings, .booking-history, .payment-history, .link-card {
+    width: auto; /* Make width responsive */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .booking-text {
+    margin-left: 20px;
+  }
+}
