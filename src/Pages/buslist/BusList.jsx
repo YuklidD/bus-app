@@ -70,8 +70,8 @@ const BusList = () => {
         updateBuses()
     }, [parsedData.from, parsedData.to, parsedData.time])
 
-    const handleReserveSeatClick = (busId) => {
-        navigate(`/select-seat/${busId}`)
+    const handleReserveSeatClick = (busData) => {
+        navigate(`/seatselect/${encodeURIComponent(JSON.stringify(busData))}`)
     }
 
     return (
@@ -123,10 +123,14 @@ const BusList = () => {
                                             <Button
                                                 variant="primary"
                                                 className="w-100"
+                                                disable={
+                                                    new Date(bus.departure) <
+                                                    new Date()
+                                                        ? 'true'
+                                                        : 'false'
+                                                }
                                                 onClick={() =>
-                                                    handleReserveSeatClick(
-                                                        bus.busId
-                                                    )
+                                                    handleReserveSeatClick(bus)
                                                 }
                                             >
                                                 Reserve seat →

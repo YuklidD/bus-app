@@ -1,33 +1,28 @@
-import React, { useState,} from 'react';
-import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
-import { useNavigate,Link } from 'react-router-dom';
-import axios from 'axios';
-import NavigationBar from '../../component/NavigationBar';
-import './Login.css';
-import AlertModal from '../../Modal/AlertModal';
-import Footer from '../../component/Footer';
-import api from '../../axiosConfig';
-import RegistrationForm from './RegistrationForm'; // The registration form component
-import LoginForm from './LoginForm';
+import React, { useState } from 'react'
+import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap'
+import NavigationBar from '../../component/NavigationBar'
+import './Login.css'
+import AlertModal from '../../Modal/AlertModal'
+import Footer from '../../component/Footer'
+import RegistrationForm from './RegistrationForm' // The registration form component
+import LoginForm from './LoginForm'
 
 const LoginPage = () => {
-
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false)
 
     const handleCloseModal = () => {
-        setShowModal(false);
-    };
+        setShowModal(false)
+    }
 
-    const [showRegistration, setShowRegistration] = useState(false);
+    const [showRegistration, setShowRegistration] = useState(false)
 
     const switchToRegister = () => {
-        setShowRegistration(true);
-    };
+        setShowRegistration(true)
+    }
 
     const switchToLogin = () => {
-        setShowRegistration(false);
-    };
-   
+        setShowRegistration(false)
+    }
 
     return (
         <>
@@ -40,10 +35,10 @@ const LoginPage = () => {
                         className="auth-section d-flex align-items-center justify-content-center px-0"
                     >
                         {showRegistration ? (
-                        <RegistrationForm onSwitchToLogin={switchToLogin} />
-                    ) : (
-                        <LoginForm onSwitchToRegister={switchToRegister} />
-                    )}
+                            <RegistrationForm onSwitchToLogin={switchToLogin} />
+                        ) : (
+                            <LoginForm onSwitchToRegister={switchToRegister} />
+                        )}
                     </Col>
                     <Col md={6} className="image-section p-0 d-none d-md-block">
                         {' '}
@@ -64,8 +59,7 @@ const LoginPage = () => {
             />
             <Footer />
         </>
-    );
-};
+    )
+}
 
-export default LoginPage;
-
+export default LoginPage
