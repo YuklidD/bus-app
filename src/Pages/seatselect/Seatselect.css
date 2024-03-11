@@ -1,28 +1,28 @@
 /* SelectSeatPage.css */
 .select-seat-page {
-  display: flex; /* Use flexbox for layout */
-  flex-direction: row; /* Arrange children in a row */
-  padding-top: 70px; /* Adjust this value based on the actual height of your NavigationBar */
-  padding-bottom: 70px; /* Adjust this value based on the actual height of your Footer */
-  min-height: calc(100vh - 140px); /* Adjusted height calculation */
-  justify-content: center; /* Center children horizontally */
-  align-items: stretch; /* Stretch children to fill the container height */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Arrange children in a row */
+    padding-top: 70px; /* Adjust this value based on the actual height of your NavigationBar */
+    padding-bottom: 70px; /* Adjust this value based on the actual height of your Footer */
+    min-height: calc(100vh - 140px); /* Adjusted height calculation */
+    justify-content: center; /* Center children horizontally */
+    align-items: stretch; /* Stretch children to fill the container height */
 }
-  
-  /* Ensure the footer is at the bottom of the page */
-  .footer {
+
+/* Ensure the footer is at the bottom of the page */
+.footer {
     width: 100%;
     /* If you are using a sticky footer, you might not need to adjust this */
-  }
+}
 
 .bus-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
-  }
-  
-  .seat {
+}
+
+.seat {
     display: inline-block;
     margin: 5px;
     width: 40px;
@@ -30,45 +30,45 @@
     text-align: center;
     line-height: 32px; /* Center text vertically */
     cursor: pointer;
-   -webkit-user-select: none; /* Prevent text selection */
-  }
-  
-  .driver-seat {
+    border: 1px solid #7749f8;
+    -webkit-user-select: none; /* Prevent text selection */
+}
+
+.seat.booked {
+    pointer-events: none;
+}
+
+.driver-seat {
     height: 40px;
     /* Add additional styling for the driver's area */
-  }
-  
-  .bus-middle {
+}
+
+.bus-middle {
     width: 100%;
     height: 20px;
     /* Add styling for the bus middle space */
-  }
-  
-  .row {
+}
+
+.row {
     display: flex;
     justify-content: center;
-  }
-  
-  .exit-row .seat {
-    /* Special styling for the last row if needed */
-  }
-  
-  .col {
-    flex: 0 0 auto; /* Don't grow or shrink */
-  }
-  
- 
+}
 
-  
-  .bus-container {
-    border: 2px solid #7749F8; /* Adjust color as needed */
+.exit-row .seat {
+    /* Special styling for the last row if needed */
+}
+
+.col {
+    flex: 0 0 auto; /* Don't grow or shrink */
+}
+
+.bus-container {
+    border: 2px solid #7749f8; /* Adjust color as needed */
     border-radius: 8px; /* Rounded corners for the bus layout */
     padding: 20px; /* Add padding to prevent content from touching the borders */
-    
-    
-  }
-  
-  .driver-seat {
+}
+
+.driver-seat {
     background-color: #007bff; /* Bootstrap primary color for the driver seat */
     color: #ffffff; /* White text color */
     padding: 10px 20px;
@@ -79,124 +79,116 @@
     height: 60px; /* Fixed height */
     line-height: 60px; /* Center text vertically */
     display: inline-block; /* Necessary for widths to take effect */
-  }
+}
 
-  /* SelectSeatPage.css */
+/* SelectSeatPage.css */
 .checkout-section {
-  background-color: #ffffff; /* Or any color that fits your design */
-  padding: 20px; /* Adjust padding to your preference */
+    background-color: #ffffff; /* Or any color that fits your design */
+    padding: 20px; /* Adjust padding to your preference */
 
-  width: 600%; /* Full width of the column it's in */
+    width: 600%; /* Full width of the column it's in */
 }
 
 /* Styles for badges to make them look like buttons */
 .badge-pill {
-  width: auto;
-  padding: 10px 15px; /* Adjust to your preference */
-  cursor: pointer;
+    width: auto;
+    padding: 10px 15px; /* Adjust to your preference */
+    cursor: pointer;
 }
 
 /* Styles for the seat count control */
 .seat-count-control {
-  display: flex;
-  height: 50px;
-  margin-top: 15px; /* Space above the seat count control */
-}
-
-.count{
-  padding-top: 20px;
-  font-size: large;
-  
-}
-/* Styles for the checkout button */
-.checkout-button {
-  background-color: #6200ea; /* Example primary color */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px; /* Space above the checkout button */
-  cursor: pointer;
-  border-radius: 5px; /* Rounded corners for the button */
-  width: 100%; /* Full width of the button */
-}
-
-/* Ensure that the badges and button text are not selectable */
-.badge-pill, .checkout-button {
- -webkit-user-select: none;
-}
-
-.available-badge{
-  background-color: #D1E7DD !important;
-  color:  #0A3622;
-}
-.booked-badge{
-  background-color: #F8D7DA !important;
-  color:  #58151C;
-  ;
-}
-
-.selected-badge{
-  background-color:  #FFF3CD !important;
-  color: #664D03;
-}
-
-.custom-busId-badge {
-  border-radius: 4px !important;
-  background-color: #CFF4FC !important;
-  color: #055160;
-  
-  
-}
-
-.price-section {
-  padding-top: 300px; /* Adjust this value as needed for space above the price section */
-  justify-content: space-between; /* This will put space between the Total and the buttons */
-  
-}
-
-.seat-control-button {
-  font-size: 1.25rem; /* Larger font size for buttons */
-  width: 31px; /* Adjust width as necessary */
-  height: 32px; /* Adjust height as necessary */
-
+    display: flex;
+    height: 50px;
+    margin-top: 15px; /* Space above the seat count control */
 }
 
 .count {
-  font-size: 18px; /* Larger font size for the count */
+    padding-top: 20px;
+    font-size: large;
+}
+/* Styles for the checkout button */
+.checkout-button {
+    background-color: #6200ea; /* Example primary color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px; /* Space above the checkout button */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
+    width: 100%; /* Full width of the button */
+}
+
+/* Ensure that the badges and button text are not selectable */
+.badge-pill,
+.checkout-button {
+    -webkit-user-select: none;
+}
+
+.available-badge,
+.available {
+    background-color: #d1e7dd !important;
+    color: #0a3622;
+}
+.booked-badge,
+.booked {
+    background-color: #f8d7da !important;
+    color: #58151c;
+}
+
+.selected-badge,
+.selected {
+    background-color: #fff3cd !important;
+    color: #664d03;
+}
+
+.custom-busId-badge {
+    border-radius: 4px !important;
+    background-color: #cff4fc !important;
+    color: #055160;
+}
+
+.price-section {
+    padding-top: 300px; /* Adjust this value as needed for space above the price section */
+    justify-content: space-between; /* This will put space between the Total and the buttons */
+}
+
+.seat-control-button {
+    font-size: 1.25rem; /* Larger font size for buttons */
+    width: 31px; /* Adjust width as necessary */
+    height: 32px; /* Adjust height as necessary */
+}
+
+.count {
+    font-size: 18px; /* Larger font size for the count */
 }
 
 .checkout-button {
-  width: 100%; /* Full width button */
-  padding: 10px; /* Larger padding for better touch */
-  font-size: 14px; /* Larger font size for checkout text */
-  height: 40px; /* Adjust height as necessary */
+    width: 100%; /* Full width button */
+    padding: 10px; /* Larger padding for better touch */
+    font-size: 14px; /* Larger font size for checkout text */
+    height: 40px; /* Adjust height as necessary */
 }
-
-
-
-
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
-  .checkout-section {
-    max-width: 400px; /* Maximum width on larger screens */
-    margin-top: 0; /* Reset margin top for larger screens */
-  }
+    .checkout-section {
+        max-width: 400px; /* Maximum width on larger screens */
+        margin-top: 0; /* Reset margin top for larger screens */
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .bus-container {
-    padding: 30px; /* Increase padding for larger devices */
-  }
+    .bus-container {
+        padding: 30px; /* Increase padding for larger devices */
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .bus-container {
-    padding: 40px; /* Further increase padding for desktops */
-    border-radius: 10px; /* Slightly larger rounded corners for a subtle effect */
-  }
+    .bus-container {
+        padding: 40px; /* Further increase padding for desktops */
+        border-radius: 10px; /* Slightly larger rounded corners for a subtle effect */
+    }
 }
-
-  
