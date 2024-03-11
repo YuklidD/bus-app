@@ -1,8 +1,35 @@
-# React + Vite
+# Tripster
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tripster is a web application designed to streamline the process of booking bus tickets online. With Tripster, users can easily search for buses based on their origin, destination, and preferred travel date and time. The application provides a user-friendly interface for browsing available buses, selecting seats, and completing the reservation process.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**: Secure login and registration system for users.
+- **Route Selection**: Users can search for buses by specifying the origin and destination.
+- **Seat Selection**: Interactive seat selection interface for users to choose their preferred seats.
+- **Reservation**: Seamless booking process allowing users to reserve seats for their desired bus journeys.
+- **Dashboard**: Personalized dashboard for users to manage their bookings and account information.
+
+## Technologies Used
+
+- **Frontend**: React.js, React Router, Bootstrap
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **API Communication**: Axios
+- **Authentication**: JSON Web Tokens (JWT)
+- **Deployment**: Heroku
+
+## How to Use
+
+1. Clone the repository: `git clone https://github.com/codingdesk-dev/Tripster-Fork.git`
+2. Navigate to the project directory: `cd Tripster-Fork`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions, bug fixes, or new features to add, please feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

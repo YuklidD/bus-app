@@ -28,7 +28,7 @@
     width: 40px;
     height: 40px;
     text-align: center;
-    line-height: 40px; /* Center text vertically */
+    line-height: 32px; /* Center text vertically */
     cursor: pointer;
    -webkit-user-select: none; /* Prevent text selection */
   }
