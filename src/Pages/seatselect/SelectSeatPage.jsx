@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Badge, Container, Row, Col, Button } from 'react-bootstrap'
 import './Seatselect.css'
@@ -6,35 +6,56 @@ import NavigationBar from '../../component/NavigationBar'
 import Footer from '../../component/Footer'
 
 const SelectSeatPage = () => {
+    // Get data from useParams and parse it
     const { data } = useParams()
     const decodedData = decodeURIComponent(data)
-    const parsedData = JSON.parse(decodedData)
+    const [parsedData, setParsedData] = useState({}) // Initialize parsedData as an empty object
+
+    useEffect(() => {
+        try {
+            setParsedData(JSON.parse(decodedData))
+        } catch (error) {
+            console.error('Error parsing data:', error)
+            // Handle parsing error here, such as showing an error message to the user
+        }
+    }, [data]) // useEffect will run whenever data changes
+
     const [bookedSeats, setBookedSeats] = useState([5])
     const [selectedSeats, setSelectedSeats] = useState([])
 
     const handleSeatClick = (seatNumber, currentStatus) => {
         if (
             !selectedSeats.includes(seatNumber) &&
-            currentStatus == 'available'
+            currentStatus === 'available'
         ) {
             setSelectedSeats([...selectedSeats, seatNumber])
         } else if (selectedSeats.includes(seatNumber)) {
-            setSelectedSeats(selectedSeats.filter((seat) => seat != seatNumber))
+            setSelectedSeats(
+                selectedSeats.filter((seat) => seat !== seatNumber)
+            )
         }
     }
 
-    // Example function to handle adding a seat (this might not directly correlate with selecting a seat visually)
+    // Improved function to handle adding a seat (adds only one seat)
     const handleAddSeat = () => {
-        if (bookedSeats.length < MAX_SEATS) {
-            // Assume MAX_SEATS is defined somewhere
-            // Logic to add a seat
+        if (bookedSeats.length < 30 && selectedSeats.length < 30) {
+            const availableSeats = Array.from(
+                { length: 30 },
+                (_, index) => index + 1
+            ).filter(
+                (seat) =>
+                    !bookedSeats.includes(seat) && !selectedSeats.includes(seat)
+            )
+            if (availableSeats.length > 0) {
+                setSelectedSeats([...selectedSeats, availableSeats[0]])
+            }
         }
     }
 
-    // Example function to handle removing a seat
+    // Improved function to handle removing a seat (removes only one seat)
     const handleRemoveSeat = () => {
-        if (bookedSeats.length > 0) {
-            setBookedSeats(bookedSeats.slice(0, -1)) // Removes the last seat from the selection
+        if (selectedSeats.length > 0) {
+            setSelectedSeats(selectedSeats.slice(0, selectedSeats.length - 1))
         }
     }
 
@@ -252,14 +273,17 @@ const SelectSeatPage = () => {
                                         bg="secondary"
                                         className="ms-2 price-badge"
                                     >
-                                        Rs. 60.00
+                                        Rs. {parsedData.price}.00
                                     </Badge>
                                 </h5>
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h5>
                                         Total:{' '}
                                         <span className="total-amount">
-                                            Rs. {bookedSeats.length * 60}.00
+                                            Rs.{' '}
+                                            {selectedSeats.length *
+                                                parsedData.price}
+                                            .00
                                         </span>
                                     </h5>
                                     <div className="seat-count-control d-flex align-items-center">
@@ -271,7 +295,7 @@ const SelectSeatPage = () => {
                                             -
                                         </Button>
                                         <div className="count mx-2">
-                                            {bookedSeats.length}
+                                            {selectedSeats.length}
                                         </div>
                                         <Button
                                             variant="outline-primary"
