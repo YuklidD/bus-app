@@ -18,6 +18,15 @@
 
 .footer-section h5:not(:first-of-type) {
   margin-top: 20px;
+  
+}
+
+.lists{
+  margin-left: 40px;
+}
+
+.footer-section h5{
+  color: white;
 }
 
 .footer-section ul {
