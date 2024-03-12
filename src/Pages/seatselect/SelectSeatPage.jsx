@@ -15,34 +15,41 @@ const SelectSeatPage = () => {
 
     useEffect(() => {
         try {
+            setBookedSeats(parsedData.seats)
+            // Fetch bus information based on the provided bus ID
             const response = api.get(`bus/${parsedData.busId}`)
             response.then((resData, err) => {
                 setBusId(resData.data.number)
             })
         } catch (error) {
-            console.error('Error parsing data:', error)
-            // Handle parsing error here, such as showing an error message to the user
+            console.error('Error fetching bus information:', error)
+            // Handle error, such as showing an error message to the user
         }
     }, [data]) // useEffect will run whenever data changes
 
+    // State for booked and selected seats
     const [bookedSeats, setBookedSeats] = useState([])
     const [selectedSeats, setSelectedSeats] = useState([])
 
+    // Function to handle seat click event
     const handleSeatClick = (seatNumber, currentStatus) => {
         if (
             !selectedSeats.includes(seatNumber) &&
             currentStatus === 'available'
         ) {
+            // Add the seat to selected seats if it's available
             setSelectedSeats([...selectedSeats, seatNumber])
         } else if (selectedSeats.includes(seatNumber)) {
+            // Remove the seat if it's already selected
             setSelectedSeats(
                 selectedSeats.filter((seat) => seat !== seatNumber)
             )
         }
     }
 
-    // Improved function to handle adding a seat (adds only one seat)
+    // Function to handle adding a seat
     const handleAddSeat = () => {
+        // Add a seat only if there are available seats
         if (bookedSeats.length < 30 && selectedSeats.length < 30) {
             const availableSeats = Array.from(
                 { length: 30 },
@@ -57,14 +64,44 @@ const SelectSeatPage = () => {
         }
     }
 
-    // Improved function to handle removing a seat (removes only one seat)
+    // Function to handle removing a seat
     const handleRemoveSeat = () => {
+        // Remove the last selected seat
         if (selectedSeats.length > 0) {
             setSelectedSeats(selectedSeats.slice(0, selectedSeats.length - 1))
         }
     }
 
-    // Create a component to represent individual seats
+    // Function to make reservation
+    const makeReservation = () => {
+        // Prepare reservation data
+        const reservationData = {
+            scheduleId: parsedData._id,
+            seats: bookedSeats.concat(selectedSeats),
+        }
+
+        console.log('Reservation data:', reservationData)
+
+        // Make API request to reserve seats
+        fetch('http://localhost:4000/api/schedule/reserve', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reservationData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Reservation successful:', data)
+                // Handle success, such as showing a success message to the user
+            })
+            .catch((error) => {
+                console.error('Error making reservation:', error)
+                // Handle error, such as showing an error message to the user
+            })
+    }
+
+    // Component to represent individual seats
     const Seat = ({ number, status }) => (
         <Badge
             pill
@@ -314,6 +351,7 @@ const SelectSeatPage = () => {
                                 <Button
                                     variant="primary"
                                     className="checkout-button"
+                                    onClick={makeReservation}
                                 >
                                     Checkout
                                 </Button>
