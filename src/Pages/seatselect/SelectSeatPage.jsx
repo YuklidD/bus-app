@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Badge, Container, Row, Col, Button } from 'react-bootstrap'
 import './Seatselect.css'
 import NavigationBar from '../../component/NavigationBar'
@@ -9,6 +9,7 @@ import api from '../../axiosConfig'
 const SelectSeatPage = () => {
     // Get data from useParams and parse it
     const { data } = useParams()
+    const navigate = useNavigate()
     const decodedData = decodeURIComponent(data)
     const parsedData = JSON.parse(decodedData)
     const [busId, setBusId] = useState('')
@@ -73,32 +74,29 @@ const SelectSeatPage = () => {
     }
 
     // Function to make reservation
-    const makeReservation = () => {
+    const makeReservation = async () => {
         // Prepare reservation data
         const reservationData = {
+            userId: localStorage.getItem('userid'),
             scheduleId: parsedData._id,
             seats: bookedSeats.concat(selectedSeats),
+            sheduleDate: parsedData.reqDate,
         }
 
-        console.log('Reservation data:', reservationData)
-
-        // Make API request to reserve seats
-        fetch('http://localhost:4000/api/schedule/reserve', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reservationData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Reservation successful:', data)
-                // Handle success, such as showing a success message to the user
-            })
-            .catch((error) => {
+        if (localStorage.getItem('username') !== null) {
+            // Make API request to reserve seats
+            try {
+                const response = await api.post(
+                    'schedule/reserve',
+                    reservationData
+                )
+                api.post(`user/schedule`, reservationData)
+            } catch (error) {
                 console.error('Error making reservation:', error)
-                // Handle error, such as showing an error message to the user
-            })
+            }
+        } else {
+            navigate('/authentication')
+        }
     }
 
     // Component to represent individual seats
