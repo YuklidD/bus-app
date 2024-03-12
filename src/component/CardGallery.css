@@ -1,0 +1,33 @@
+.card-gallery {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling if the cards overflow */
+    padding-bottom: 20px; /* Add padding to the bottom of the container */
+  }
+  
+  .card {
+    flex: 1 1 auto; /* Allow cards to grow and shrink equally to fill the available space */
+    margin-right: 20px; /* Add right margin to create gaps between cards */
+    border: 1px solid #DEE2E6;
+    border-radius: 12px;
+    box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+    padding: 20px; /* Add padding to the content of each card */
+  }
+  
+  .card:first-child {
+    margin-left: 20px; /* Add left margin to the first card to align it properly with the container */
+  }
+  
+  .card:last-child {
+    margin-right: 0; /* Remove right margin from the last card to prevent unnecessary space */
+  }
+  
+  .card:hover {
+    box-shadow: 0px 8px 35px 0px #00000029;
+  }
+  
+  .card img {
+    width: 100%; /* Ensure the image fills the entire card */
+    height: auto; /* Allow the image to adjust its height proportionally */
+    border-radius: 10px; /* Apply border radius to the image */
+  }
+  

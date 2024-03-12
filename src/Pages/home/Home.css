@@ -10,13 +10,18 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  
+  
 }
+
+
 
 .home {
   min-height: 100vh; /* Full viewport height minimum */
   display: flex;
   flex-direction: column; /* Stack children vertically */
   background: radial-gradient(84.38% 112.45% at 7.54% -54.2%, #2980B9 0%, #6DD5FA 50%, #FFFFFF 100%);
+
 }
 
 /* Adjust the container that wraps the content below the Navbar */
@@ -92,6 +97,17 @@ html, body {
 .detail-content{
  
 } 
+
+.why-how-section {
+  display: flex !important;
+  align-items: center !important; /* This centers the content vertically */
+  justify-content: center !important; /* This centers the content horizontally, if needed */
+  min-height: 100vh !important; /* Adjust the height as necessary */
+  margin-left: 75px;
+  margin-right: 75px;
+
+}
+
 
 .detail-content h1 {
   font-family: 'Inter', sans-serif; /* Ensure fallback */

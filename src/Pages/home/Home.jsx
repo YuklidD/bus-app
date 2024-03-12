@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import NavigationBar from '../../component/NavigationBar';
@@ -10,6 +10,8 @@ import animationData from '../../assets/lottie-bus.json'; // Your Lottie file
 import FindIcon from "../../assets/icons/find.svg";
 import SelectIcon from "../../assets/icons/select.svg";
 import ReserveIcon from "../../assets/icons/reserve.svg";
+import Accordions from '../../component/Accordions';
+import CardGallery from '../../component/Cards';
 
 
 
@@ -23,7 +25,6 @@ const Home = () => {
     }
   };
 
-  
 
   return (
     <Container fluid className="p-0 home">
@@ -57,7 +58,27 @@ const Home = () => {
           </div>
         </Col>
       </Row>
+      <Row className="my-5 why-how-section">
+        <Col xs={12}>
+          <h2>How It Works</h2>
+          <Accordions />
+          <Accordions />
+          <Accordions />
+          <Accordions />
+          <Accordions />
+          <Accordions />
+        </Col>
+      </Row>
 
+      {/* Separate Row for 'Why Choose Us?' */}
+      <Row className="my-5 why-how-section">
+        <Col xs={12}>
+          <h2>Why Choose Us?</h2>
+          <Row>
+          <CardGallery />
+          </Row>
+        </Col>
+      </Row>
       <Footer />
     </Container>
   );
