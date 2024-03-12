@@ -4,23 +4,28 @@ import { Badge, Container, Row, Col, Button } from 'react-bootstrap'
 import './Seatselect.css'
 import NavigationBar from '../../component/NavigationBar'
 import Footer from '../../component/Footer'
+import api from '../../axiosConfig'
 
 const SelectSeatPage = () => {
     // Get data from useParams and parse it
     const { data } = useParams()
     const decodedData = decodeURIComponent(data)
-    const [parsedData, setParsedData] = useState({}) // Initialize parsedData as an empty object
+    const parsedData = JSON.parse(decodedData)
+    const [busId, setBusId] = useState('')
 
     useEffect(() => {
         try {
-            setParsedData(JSON.parse(decodedData))
+            const response = api.get(`bus/${parsedData.busId}`)
+            response.then((resData, err) => {
+                setBusId(resData.data.number)
+            })
         } catch (error) {
             console.error('Error parsing data:', error)
             // Handle parsing error here, such as showing an error message to the user
         }
     }, [data]) // useEffect will run whenever data changes
 
-    const [bookedSeats, setBookedSeats] = useState([5])
+    const [bookedSeats, setBookedSeats] = useState([])
     const [selectedSeats, setSelectedSeats] = useState([])
 
     const handleSeatClick = (seatNumber, currentStatus) => {
@@ -238,7 +243,7 @@ const SelectSeatPage = () => {
                                     pill
                                     bg="secondary"
                                 >
-                                    258AN
+                                    {busId}
                                 </Badge>
                             </h4>
                             <div>Please select your seats for reservation</div>
