@@ -27,12 +27,13 @@ const BusList = () => {
                         element.origin === parsedData.from &&
                         element.destination === parsedData.to
                     ) {
-                        response = await api.get(`schedule/${element._id}`)
+                        response = await api.get(`schedule/br/${element._id}`)
                         response = response.data
 
                         let busList = []
 
                         response.forEach((schedule) => {
+                            console.log(schedule)
                             let busData = {
                                 _id: schedule._id,
                                 busId: schedule.busId,
@@ -41,7 +42,9 @@ const BusList = () => {
                                 destination: element.destination,
                                 departure: new Date(schedule.departure),
                                 arrival: schedule.arrival,
-                                seats: schedule.seats,
+                                seats: isPlainObject(schedule.seats)
+                                    ? schedule.seats
+                                    : {},
                                 price: element.price,
                                 reqDate: parsedData.date,
                             }
@@ -75,6 +78,15 @@ const BusList = () => {
 
     const handleReserveSeatClick = (busData) => {
         navigate(`/seatselect/${encodeURIComponent(JSON.stringify(busData))}`)
+    }
+
+    function isPlainObject(value) {
+        if (Object.prototype.toString.call(value) !== '[object Object]') {
+            return false
+        }
+
+        const prototype = Object.getPrototypeOf(value)
+        return prototype === null || prototype === Object.prototype
     }
 
     return (
@@ -113,6 +125,16 @@ const BusList = () => {
                                                         {formatDistance(
                                                             new Date(
                                                                 bus.departure
+                                                            ).setFullYear(
+                                                                new Date(
+                                                                    parsedData.date
+                                                                ).getFullYear(),
+                                                                new Date(
+                                                                    parsedData.date
+                                                                ).getMonth(),
+                                                                new Date(
+                                                                    parsedData.date
+                                                                ).getDate()
                                                             ),
                                                             new Date(),
                                                             { addSuffix: true }
@@ -138,6 +160,16 @@ const BusList = () => {
                                                     disable={
                                                         new Date(
                                                             bus.departure
+                                                        ).setFullYear(
+                                                            new Date(
+                                                                parsedData.date
+                                                            ).getFullYear(),
+                                                            new Date(
+                                                                parsedData.date
+                                                            ).getMonth(),
+                                                            new Date(
+                                                                parsedData.date
+                                                            ).getDate()
                                                         ) < new Date()
                                                             ? 'true'
                                                             : 'false'

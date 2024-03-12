@@ -1,122 +1,180 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button, Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from '../../component/NavigationBar';
-import './Dashboard.css';
-import Footer from '../../component/Footer';
-
+import React from 'react'
+import { Container, Row, Col, Card, Button, Navbar, Nav } from 'react-bootstrap'
+import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import NavigationBar from '../../component/NavigationBar'
+import './Dashboard.css'
+import Footer from '../../component/Footer'
+import api from '../../axiosConfig'
 
 const Dashboard = () => {
-  const bookings = [
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    // Add more bookings as needed
-  ];
+    let username = ''
+    const [bookings, setBookings] = useState([])
+    const [bookingHistory, setBookingHistory] = useState([])
 
-  const bookingHistory = [
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    { route: 'Colombo → Homagama', date: '01/03' },
-    // ... more booking history
-  ];
+    username = localStorage.getItem('username')
 
-  const paymentHistory = [
-    { payId: '#33894', date: '01/03' },
-    { payId: '#78099', date: '01/03' },
-    { payId: '#32411', date: '01/03' },
-    { payId: '#89894', date: '01/03' },
-    { payId: '#78814', date: '02/03' },
-    // ... more booking history
-  ];
+    api.get(`/user/schedule/${localStorage.getItem('userid')}`).then(
+        async (res, err) => {
+            if (!err) {
+                const bookings = []
+                const bookingHistory = []
 
-  return (
-    <>
-      {/*NavBar*/}
-      <NavigationBar/>
-      {/* Main Content Section */}
-      <Container fluid>
+                for (const reservation of res.data.reservations) {
+                    try {
+                        const schedule = await api.get(
+                            `/schedule/${reservation.scheduleId}`
+                        )
+                        const route = await api.get(
+                            `/route/${schedule.data[0].routeId}`
+                        )
 
-        <Row>
-          <Col md='6'>
-            <h1>Hi Allen!</h1>
-          </Col>
+                        const booking = {
+                            route: `${route.data.origin} → ${route.data.destination}`,
+                            date: formatDate(reservation.date),
+                        }
 
-          <Col md="6" className="text-md-right">
-            {/* Account Settings Link */}
-            <a href="/account-settings" className="account-settings-link">Account Settings →</a>
-          </Col>
-        </Row>
+                        hasDatePassed(reservation.date)
+                            ? bookingHistory.push(booking)
+                            : bookings.push(booking)
+                    } catch (error) {
+                        console.error(
+                            'Error fetching schedule or route:',
+                            error
+                        )
+                    }
+                }
+                setBookings(bookings)
+                setBookingHistory(bookingHistory)
+            } else {
+                console.error('Error fetching user schedule:', err)
+            }
+        }
+    )
 
-        <Row>
-          <Col md="6">
-           {/* Upcoming Bookings Card */}
-            <h5>Upcoming Bookings</h5>
-            <Card className="upcoming-bookings">
-              <Card.Body>
-                {bookings.map((booking, index) => (
-                  <div className="booking-item" key={index}>
-                    <span>{booking.route}</span>
-                    <span className="booking-date badge bg-info text-dark">{booking.date}</span>
-                  </div>
-                ))}
-              </Card.Body>
-            </Card>
-          </Col>
-        
-          <Col md="6" >
-            <h5 className='booking-text'>Booking History</h5>
-            <Card className="booking-history">
-              <Card.Body>
-                  {bookingHistory.map((bookingHistory, index) => (
-                  <div className="booking-item" key={index}>
-                    <span>{bookingHistory.route}</span>
-                    <span className="booking-date badge bg-info text-dark">{bookingHistory.date}</span>
-                  </div>
-                  ))}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+    function formatDate(inputDate) {
+        const dateParts = inputDate.split('-') // Split the date string by '-'
+        const year = dateParts[0]
+        const month = dateParts[1]
+        const day = dateParts[2]
 
-        <Row>
-        <Col md="6">
-            <h5>Payment History</h5>
-            <Card className="payment-history">
-              <Card.Body>
-                  {paymentHistory.map((paymentHistory, index) => (
-                  <div className="booking-item" key={index}>
-                    <span>{paymentHistory.payId}</span>
-                    <span className="booking-date badge bg-info text-dark">{paymentHistory.date}</span>
-                  </div>
-                  ))}
-              </Card.Body>
-            </Card>
-          </Col>
+        // Format the date as "MM/DD"
+        const formattedDate = `${month}/${day}`
 
-          <Col md="6">
-          {/* Useful Links Card */}
-            <Card className="link-card">
-             <span>Useful Links</span>
-              <Card.Body>
-                {/* Repeat this block for each useful link */}
-                <Card.Link className='links' href="#">Feedback and Suggestions →</Card.Link>
-                <Card.Link className='links' href="#">Support and Help →</Card.Link>
-                <Card.Link className='links' href="#">Support and Help →</Card.Link>
-                <Card.Link className='links' href="#">Security Information →</Card.Link>
-                {/* ...more links */}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+        return formattedDate
+    }
 
-      </Container>
-      <Footer/>
-    </>
-  );
-};
+    function hasDatePassed(dateString) {
+        const inputDate = new Date(dateString)
+        const currentDate = new Date()
+        return inputDate < currentDate
+    }
 
-export default Dashboard;
+    const paymentHistory = [
+        { payId: '#33894', date: '01/03' },
+    ]
+
+    return (
+        <>
+            {/*NavBar*/}
+            <NavigationBar />
+            {/* Main Content Section */}
+            <Container fluid>
+                <Row>
+                    <Col md="6">
+                        <h1>Hi {username}!</h1>
+                    </Col>
+
+                    <Col md="6" className="text-md-right">
+                        {/* Account Settings Link */}
+                        <a
+                            href="/account-settings"
+                            className="account-settings-link"
+                        >
+                            Account Settings →
+                        </a>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col md="6">
+                        {/* Upcoming Bookings Card */}
+                        <h5>Upcoming Bookings</h5>
+                        <Card className="upcoming-bookings">
+                            <Card.Body>
+                                {bookings.map((booking, index) => (
+                                    <div className="booking-item" key={index}>
+                                        <span>{booking.route}</span>
+                                        <span className="booking-date badge bg-info text-dark">
+                                            {booking.date}
+                                        </span>
+                                    </div>
+                                ))}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+
+                    <Col md="6">
+                        <h5 className="booking-text">Booking History</h5>
+                        <Card className="booking-history">
+                            <Card.Body>
+                                {bookingHistory.map((bookingHistory, index) => (
+                                    <div className="booking-item" key={index}>
+                                        <span>{bookingHistory.route}</span>
+                                        <span className="booking-date badge bg-info text-dark">
+                                            {bookingHistory.date}
+                                        </span>
+                                    </div>
+                                ))}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col md="6">
+                        <h5>Payment History</h5>
+                        <Card className="payment-history">
+                            <Card.Body>
+                                {paymentHistory.map((paymentHistory, index) => (
+                                    <div className="booking-item" key={index}>
+                                        <span>{paymentHistory.payId}</span>
+                                        <span className="booking-date badge bg-info text-dark">
+                                            {paymentHistory.date}
+                                        </span>
+                                    </div>
+                                ))}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+
+                    <Col md="6">
+                        {/* Useful Links Card */}
+                        <Card className="link-card">
+                            <span>Useful Links</span>
+                            <Card.Body>
+                                {/* Repeat this block for each useful link */}
+                                <Card.Link className="links" href="#">
+                                    Feedback and Suggestions →
+                                </Card.Link>
+                                <Card.Link className="links" href="#">
+                                    Support and Help →
+                                </Card.Link>
+                                <Card.Link className="links" href="#">
+                                    Support and Help →
+                                </Card.Link>
+                                <Card.Link className="links" href="#">
+                                    Security Information →
+                                </Card.Link>
+                                {/* ...more links */}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+            <Footer />
+        </>
+    )
+}
+
+export default Dashboard
