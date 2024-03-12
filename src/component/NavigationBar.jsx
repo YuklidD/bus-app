@@ -37,7 +37,7 @@ const NavigationBar = ({ showLoginButton }) => {
                     <Link to="/authentication" className="nav-link">
                         <Button
                             variant="outline-light"
-                            className="ms-lg-auto full-width-on-small"
+                            className="ms-lg-auto full-width-on-small login-button"
                         >
                             Login
                         </Button>

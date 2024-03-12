@@ -35,26 +35,34 @@
 
 .button-check {
   margin-top: 15px;
+  margin-left: 0px;
 
 }
 
-.areYouASection {
-  margin-top: 10rem;
-  margin-bottom: 1rem;
+
+/* Ensures the dropdown fits within its parent container */
+.custom-select {
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .areYouASection {
-    position: static;
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
+/* Limits the width of the dropdown menu */
+.custom-select option {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Bootstrap's dropdown menu adjustment */
+.dropdown-menu {
+  max-width: 100%; /* Limit dropdown width to 100% of its parent */
+  left: auto; /* Reset any specific left positioning */
+  right: 0; /* Align to the right edge of the select box */
+}
+
+/* This media query ensures that the dropdown does not overflow small screens */
+@media (max-width: 576px) {
+  .dropdown-menu {
+    width: 100%; /* Full width on small screens */
   }
 }
-
-
-
-
-
-
-/* Additional styles for the form if any */

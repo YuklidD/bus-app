@@ -195,13 +195,6 @@ const ReservationForm = () => {
                 </Col>
             </Row>
             </Form>
-
-            <div className="areYouASection">
-                <h5 className="areYouA mb-3">Are you a bus owner?</h5>
-                <Button variant="outline-primary" size="lg" className="w-100">
-                    Add your bus
-                </Button>
-            </div>
         </>
     )
 }

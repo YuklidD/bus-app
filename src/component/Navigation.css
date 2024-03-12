@@ -52,6 +52,9 @@
   .ms-lg-auto{
     width: 100%;
   }
+  .login-button{
+    padding-right: 10px;
+  }
 }
 
 /* Additional styles for the navbar if any */

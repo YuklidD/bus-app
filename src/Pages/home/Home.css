@@ -1,6 +1,5 @@
 /* Home.css */
 
-
 :root {
   --primary-color: #7749F8;
   --primary-color-hover: #2d00a9; /* Slightly darker shade for hover states */
@@ -17,13 +16,8 @@ html, body {
   min-height: 100vh; /* Full viewport height minimum */
   display: flex;
   flex-direction: column; /* Stack children vertically */
-  background: radial-gradient(84.38% 112.45% at 7.54% -54.2%, #2980B9 0%, #6DD5FA 50%, #FFFFFF 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-
- 
+  background: radial-gradient(84.38% 112.45% at 7.54% -54.2%, #2980B9 0%, #6DD5FA 50%, #FFFFFF 100%);
 }
-
-/* Since the Navbar and Form have their own CSS files now,
-   we don't need specific styles for them here. */
 
 /* Adjust the container that wraps the content below the Navbar */
 .home > .container {
@@ -35,6 +29,23 @@ html, body {
   padding-bottom: 56px; /* Space for footer */
 }
 
+.btn-badge .icon-class {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  width: 1em;
+  height: 1em;
+}
+
+/* Additional styles to ensure the badges are fully responsive and do not overflow */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
 /* Footer Styles */
 .custom-footer {
   background-color: #1B1B1B; /* Dark background color */
@@ -42,8 +53,140 @@ html, body {
   padding: 20px 0;
 }
 
-@media (max-width: 768px) {
-  .home > .container {
-    padding-top: 56px; /* Adjust if the Navbar height changes on mobile */
+.button-group{
+  margin-bottom: 30px;
+  margin-left: -10px;
+  
+}
+
+.btn-badge {
+  display: inline-block !important; /* To align text properly */
+  padding: 12px 20px !important; /* Adjusted padding */
+  border-radius: 40px !important;
+  background-color: #79DFC1 !important;
+  font-family: 'Inter', sans-serif !important; /* Ensure fallback */
+  font-size: 21px !important;
+  line-height: 36px !important;
+  text-align: center !important; /* Centered text for buttons */
+  color: black !important;
+  text-decoration: none !important;
+  margin: 0 10px !important; /* Spacing between buttons */
+  cursor: pointer !important; /* Indicates the badge is clickable */
+  transition: background-color 0.3s !important; /* Smooth transition for hover effect */
+  font-weight: 400;
+  
+}
+
+.btn-badge:hover {
+  background-color: var(--primary-color-hover); /* Using CSS variable for hover */
+}
+
+.content-column, .reservation-column {
+  padding: 0 15px; /* Padding on smaller screens */
+}
+
+.content-column{
+  margin-top: 40px;
+
+}
+
+.detail-content h1 {
+  font-family: 'Inter', sans-serif; /* Ensure fallback */
+  font-size: 48px; /* Smaller font size for smaller screens */
+  font-weight: 700;
+  color: #052C65;
+  margin: 0 0 20px 0; /* Adjust margins */
+}
+
+.detail-content p {
+  font-family: 'Inter', sans-serif; /* Ensure fallback */
+  font-size: 18px; /* Smaller font size for smaller screens */
+  color: #052C65;
+  line-height: 1.5; /* For better readability */
+  padding-bottom: 43px;
+}
+
+.p1{
+  color: #084298 !important;
+font-family: Inter !important;
+font-size: 16px !important;
+font-weight: 400 !important;
+line-height: 28px !important;
+letter-spacing: 0em !important;
+text-align: left !important;
+
+}
+
+@media (min-width: 992px) { /* For large screens, usually desktops */
+  .content-column {
+    padding-right: 100px;
+  }
+  .reservation-column {
+    padding-left: 100px;
+    padding-right: 75px;
+  }
+  .detail-content h1 {
+    font-size: 72px;
+  }
+  .detail-content p {
+    font-size: 21px;
   }
 }
+
+@media (max-width: 991px) { /* For medium screens, usually tablets */
+  .btn-badge {
+    width: auto; /* Auto width for better flexibility */
+    font-size: 18px; /* Slightly smaller text */
+  }
+}
+
+@media (max-width: 767px) { /* For small screens, usually phones */
+  .home > .container {
+    padding: 20px; /* More padding on smaller screens */
+  }
+  .detail-content h1 {
+    font-size: 36px; /* Even smaller font size for mobile */
+  }
+  .detail-content p {
+    font-size: 16px; /* Smaller text for easier reading on mobile */
+  }
+  .btn-badge {
+    padding: 10px 15px; /* Smaller padding on mobile */
+    font-size: 16px; /* Smaller font size */
+    margin: 0 5px; /* Less spacing between buttons */
+  }
+}
+
+/* Reservation.css */
+
+/* This ensures that the select elements take full width of their parent container */
+.custom-select {
+  width: 100%; /* Ensures the select fills the container */
+  /* Remove if you have specific padding or margin requirements */
+  padding: .375rem 2.25rem .375rem .75rem; /* Bootstrap's default padding for form select */
+  margin: 0; /* Resets any margin */
+}
+
+/* Add a media query for small screens */
+@media (max-width: 576px) {
+  .custom-select {
+    /* Adjust font-size, padding or other properties if needed for small screens */
+    font-size: 0.8rem;
+  }
+}
+
+/* Further adjustments for even smaller screens */
+@media (max-width: 400px) {
+  .custom-select {
+    /* Smaller font-size and padding for very small screens */
+    font-size: 0.7rem;
+    padding: .375rem 1.25rem .375rem .5rem; /* Slightly smaller padding */
+  }
+}
+
+/* Make sure the button is also responsive */
+.button-check {
+  width: 100%; /* Full width on all screen sizes */
+  /* Additional styles for the button if needed */
+}
+

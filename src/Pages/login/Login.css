@@ -100,11 +100,20 @@ text-align: left;
   padding: 20px; 
 }
 
+
 .login-link,.register-link,.forgot-password,.terms-link{
   color: inherit;
-  text-decoration: black underline; 
+  text-decoration: black underline; /* Add underline to the links */
   
-  
+}
+
+.login-button{
+ margin-left: -0.9px;
+}
+
+.login-button-google{
+  margin-left: -10px;
+  padding-right: 10px;
 }
 
 /* Responsive adjustments for smaller screens */

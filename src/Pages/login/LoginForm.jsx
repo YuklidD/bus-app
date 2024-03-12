@@ -105,7 +105,7 @@ const LoginForm = ({ onSwitchToRegister  }) => {
             <Button
                 variant="primary"
                 type="submit"
-                className="w-100 mb-3"
+                className="w-100 mb-3 login-button"
             >
                 Login
             </Button>
@@ -115,8 +115,9 @@ const LoginForm = ({ onSwitchToRegister  }) => {
                 <span className="or-text">or</span>
                 <div className="line"></div>
             </div>
-
+            <div className="login-button-google">
             <GoogleLoginButton clientId="113855965035-po9atl5spvi5t39lvfkmvb019ccpon4a.apps.googleusercontent.com" />
+            </div>
 
             <div className="text-center mt-3">
                 <span>Don't have an account? </span>
