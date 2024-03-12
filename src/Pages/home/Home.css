@@ -89,6 +89,9 @@ html, body {
   margin-top: 40px;
 
 }
+.detail-content{
+ 
+} 
 
 .detail-content h1 {
   font-family: 'Inter', sans-serif; /* Ensure fallback */

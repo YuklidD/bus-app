@@ -39,6 +39,10 @@
 
 }
 
+.destination,.dateTime {
+  margin-left: 0;
+}
+
 
 /* Ensures the dropdown fits within its parent container */
 .custom-select {
