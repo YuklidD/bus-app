@@ -43,6 +43,7 @@ const BusList = () => {
                                 arrival: schedule.arrival,
                                 seats: schedule.seats,
                                 price: element.price,
+                                reqDate: parsedData.date,
                             }
 
                             busData.departure = new Date(busData.departure)

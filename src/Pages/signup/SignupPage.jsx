@@ -77,7 +77,7 @@ const SignupPage = () => {
             Router. It is used to programmatically navigate the user to the '/login' route in the
             application. In this context, after a successful user signup, the function is
             redirecting the user to the login page for further actions. */
-            navigate('/login')
+            navigate('/authentication')
         } catch (err) {
             setError(
                 err.response.data.message || 'An error occurred during signup.'
