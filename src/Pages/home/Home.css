@@ -17,6 +17,8 @@ html, body {
   min-height: 100vh; /* Full viewport height minimum */
   display: flex;
   flex-direction: column; /* Stack children vertically */
+  background: radial-gradient(84.38% 112.45% at 7.54% -54.2%, #2980B9 0%, #6DD5FA 50%, #FFFFFF 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
  
 }
 

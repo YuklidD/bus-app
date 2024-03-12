@@ -1,29 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 /* Footer.css */
-.footer {
+
+.custom-footer{
   width: 100%;
   position: relative; /* Adjusted from absolute to relative */
   font-family: 'Roboto', sans-serif;
+  background-color: #140330;
 }
 
+.custom-footer a {
+  text-decoration:none ; /* Remove underline */
+  color: white;
+}
+
+.custom-footer a:hover {
+  color: blue; /* Set hover effect color */
+}
 
 .footer-section {
   /* Use flexbox to align the content */
   display: flex;
   flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center-align items horizontally */
-  text-align: center; /* Center-align text for good measure */
+  align-items: left; /* Center-align items horizontally */
+  text-align: left; /* Center-align text for good measure */
 }
 
 .footer-section h5:not(:first-of-type) {
   margin-top: 20px;
   
+  
 }
 
 .lists{
   margin-left: 40px;
+  
 }
+.social-icons {
+  padding-left: 88px;
+  width: 32px;
+  height: 32px;
+}
+
+
 
 .footer-section h5{
   color: white;
@@ -38,6 +57,36 @@
   padding: 5px 0; /* Spacing between list items */
 }
   
+.icons{
+  
+    color: #d3e1fc; /* Your specified hex color */
+  
+}
+
+/* Footer.css */
+.icon-phone {
+  color: #d3e1fc; /* This is an example; set the color you need for the phone icon */
+  margin-right: 5px;
+}
+
+.icon-envelope {
+  color: #d3e1fc; /* This is an example; set the color you need for the envelope icon */
+  margin-right: 5px;
+  
+}
+
+.footer-email {
+  display: inline-flex; /* This keeps the icon aligned with the text */
+  align-items: center;
+  color: inherit; /* or any specific color you want for the text */
+}
+
+.footer-email a {
+  color: inherit; /* Ensures the link color matches the surrounding text or icon */
+  text-decoration: none; /* Optional: removes the underline from the link */
+}
+
+
   .footer-section svg {
     fill: #FFFFFF; /* Setting the color of SVG icons */
     margin-right: 10px; /* Spacing between icons */

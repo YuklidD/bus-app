@@ -179,18 +179,21 @@ const ReservationForm = () => {
                         />
                     </Col>
                 </Row>
-
-                <Button
-                    variant="primary"
-                    size="lg"
-                    className="mb-4 w-100 button-check"
-                    type="submit"
-                    onClick={(e) => {
-                        handleReservationRequest()
-                    }}
-                >
-                    Check
-                </Button>
+                <Row>
+                <Col xs={12} >
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        className="mb-4 w-100 button-check"
+                        type="submit"
+                        onClick={(e) => {
+                            handleReservationRequest()
+                        }}
+                    >
+                        Check
+                    </Button>
+                </Col>
+            </Row>
             </Form>
 
             <div className="areYouASection">

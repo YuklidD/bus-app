@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom for internal navigation
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faWhatsapp, faAppStore, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Footer.css'; // Import your custom CSS
 
@@ -28,21 +29,26 @@ const Footer = () => {
           </Col>
           <Col md={3} sm={6} xs={12} className="footer-section">
             <h5>Download On</h5>
-            <div className="icon-pack download-icons lists">
-              <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faAppStore} size="2x" /></a>
-              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGooglePlay} size="2x" /></a>
+            <div className="icon-pack download-icons social-icons ">
+              <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faAppStore} size="2x"  className="icons" /></a>
+              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGooglePlay} size="2x" className="icons" /></a>
+            
+
             </div>
             <h5>Connect With Us</h5>
-            <div className="icon-pack social-icons lists">
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} size="2x" /></a>
-              <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faWhatsapp} size="2x" /></a>
+            <div className="icon-pack social-icons ">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} size="2x"  className="icons"/></a>
+              <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faWhatsapp} size="2x"  className="icons" /></a>
             </div>
           </Col>
           <Col md={3} sm={6} xs={12} className="footer-section">
             <h5>Contact Us</h5>
             <div className="lists">
-            <p>Hotline: 1015</p>
-            <p>Email: <a href="mailto:info@example.com" className="footer-email">help@gobus.com</a></p> {/* Make the email clickable */}
+            <p><FontAwesomeIcon icon={faPhone} className="icon-phone" />000 000 000</p>
+            <p><FontAwesomeIcon icon={faEnvelope} className="icon-envelope" /><a href="mailto:help@gobus.com" className="footer-email">help@gobus.com</a></p>
+
+
             </div>
           </Col>
         </Row>
