@@ -25,18 +25,22 @@ const Dashboard = () => {
                         const schedule = await api.get(
                             `/schedule/${reservation.scheduleId}`
                         )
-                        const route = await api.get(
-                            `/route/${schedule.data[0].routeId}`
-                        )
 
-                        const booking = {
-                            route: `${route.data.origin} → ${route.data.destination}`,
-                            date: formatDate(reservation.date),
+                        const scheduleData = schedule.data[0]
+                        if (scheduleData && scheduleData.routeId) {
+                            const route = await api.get(
+                                `/route/${schedule.data[0].routeId}`
+                            )
+
+                            const booking = {
+                                route: `${route.data.origin} → ${route.data.destination}`,
+                                date: formatDate(reservation.date),
+                            }
+
+                            hasDatePassed(reservation.date)
+                                ? bookingHistory.push(booking)
+                                : bookings.push(booking)
                         }
-
-                        hasDatePassed(reservation.date)
-                            ? bookingHistory.push(booking)
-                            : bookings.push(booking)
                     } catch (error) {
                         console.error(
                             'Error fetching schedule or route:',
@@ -70,9 +74,7 @@ const Dashboard = () => {
         return inputDate < currentDate
     }
 
-    const paymentHistory = [
-        { payId: '#33894', date: '01/03' },
-    ]
+    const paymentHistory = [{ payId: '#33894', date: '01/03' }]
 
     return (
         <>
