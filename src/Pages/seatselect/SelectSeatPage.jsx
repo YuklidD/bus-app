@@ -16,7 +16,14 @@ const SelectSeatPage = () => {
 
     useEffect(() => {
         try {
-            setBookedSeats(parsedData.seats)
+            let tempObj = {}
+            tempObj[parsedData.reqDate] = []
+            setBookedSeats(
+                parsedData.seats[parsedData.reqDate] ||
+                    tempObj[parsedData.reqDate]
+            )
+            console.log(bookedSeats)
+
             // Fetch bus information based on the provided bus ID
             const response = api.get(`bus/${parsedData.busId}`)
             response.then((resData, err) => {
@@ -51,13 +58,17 @@ const SelectSeatPage = () => {
     // Function to handle adding a seat
     const handleAddSeat = () => {
         // Add a seat only if there are available seats
-        if (bookedSeats.length < 30 && selectedSeats.length < 30) {
+        if (
+            bookedSeats[parsedData.reqDate].length < 30 &&
+            selectedSeats.length < 30
+        ) {
             const availableSeats = Array.from(
                 { length: 30 },
                 (_, index) => index + 1
             ).filter(
                 (seat) =>
-                    !bookedSeats.includes(seat) && !selectedSeats.includes(seat)
+                    !bookedSeats[parsedData.reqDate].includes(seat) &&
+                    !selectedSeats.includes(seat)
             )
             if (availableSeats.length > 0) {
                 setSelectedSeats([...selectedSeats, availableSeats[0]])
@@ -75,22 +86,21 @@ const SelectSeatPage = () => {
 
     // Function to make reservation
     const makeReservation = async () => {
-        // Prepare reservation data
+        parsedData.seats[parsedData.reqDate] = bookedSeats.concat(selectedSeats)
+
         const reservationData = {
             userId: localStorage.getItem('userid'),
             scheduleId: parsedData._id,
-            seats: bookedSeats.concat(selectedSeats),
+            seats: parsedData.seats,
             sheduleDate: parsedData.reqDate,
         }
 
         if (localStorage.getItem('username') !== null) {
             // Make API request to reserve seats
             try {
-                const response = await api.post(
-                    'schedule/reserve',
-                    reservationData
-                )
-                api.post(`user/schedule`, reservationData)
+                await api.post('schedule/reserve', reservationData)
+                await api.post(`user/schedule`, reservationData)
+                navigate('/dashboard')
             } catch (error) {
                 console.error('Error making reservation:', error)
             }
