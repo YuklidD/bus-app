@@ -1,0 +1,88 @@
+/* Accordion container */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  overflow: hidden;
+  margin-bottom: 16px; /* Adds spacing between each accordion container if multiple */
+}
+
+/* Accordion item */
+.accordion-item {
+  margin: 8px 0; /* Adds vertical space between items */
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Rounded corners for each item */
+  overflow: hidden; /* Keeps child elements contained within the border-radius */
+  transition: box-shadow 0.3s; /* Smooth transition for shadow on hover */
+}
+
+/* Accordion item header */
+.accordion-item-header {
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.accordion-item-header:hover, .accordion-item-header.active {
+  background-color: #e2e6ea; /* Lighter grey to indicate activity or hover */
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05); /* Subtle inner shadow for depth */
+}
+
+/* Accordion item content */
+.accordion-item-content {
+  padding: 10px 16px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  display: none; /* Start hidden */
+}
+
+.accordion-item-content.visible {
+  display: block;
+}
+
+/* Accordion Header Styles */
+.accordion-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #343A40;
+}
+
+/* Accordion item active state */
+.accordion-item.active .accordion-header,
+.accordion-item.active .accordion-item-header {
+  background-color: #dee2e6; /* Darker grey to highlight active state */
+  color: #495057; /* Dark grey for text in active state for better visibility */
+}
+
+
+/* Overriding active accordion item border color */
+.accordion-item.active {
+  border-color: #adb5bd; /* Lighter border color for a less prominent active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Adds shadow to active item for emphasis */
+}
+
+/* Accordion Body Styles */
+.accordion-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6C757D;
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 576px) {
+  .accordion-header {
+      font-size: 14px;
+      padding: 10px 12px;
+  }
+
+  .accordion-body {
+      font-size: 14px;
+      padding: 10px 12px;
+  }
+}

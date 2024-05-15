@@ -1,33 +1,85 @@
 .card-gallery {
-    display: flex;
-    overflow-x: auto; /* Enable horizontal scrolling if the cards overflow */
-    padding-bottom: 20px; /* Add padding to the bottom of the container */
-  }
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap onto the next line */
+  overflow-x: auto; /* Enable horizontal scrolling if the cards overflow */
+  padding-bottom: 20px; /* Add padding to the bottom of the container */
+  justify-content: flex-start; /* Aligns children (cards) to the left */
+  overflow-y: hidden;
+}
+
+.card:first-child {
+  margin-left: -10px;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.text{
+font-family: Inter;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+color: #68717A;
+
+}
+.card{
+  width: 261px;
+  height: 300px;
   
+}
+.card:hover {
+  box-shadow: 0px 8px 35px 0px #00000029;
+}
+
+.card img {
+  width: Hug (364px ) !important;
+  height: Hug (214px) !important;
+  border-radius: 12px, 12px, 0px, 0px !important; 
+  
+}
+
+@media (max-width: 1400px) {
   .card {
-    flex: 1 1 auto; /* Allow cards to grow and shrink equally to fill the available space */
-    margin-right: 20px; /* Add right margin to create gaps between cards */
-    border: 1px solid #DEE2E6;
-    border-radius: 12px;
-    box-sizing: border-box; /* Ensure padding and border are included in width calculation */
-    padding: 20px; /* Add padding to the content of each card */
+    width: 250px;
   }
-  
-  .card:first-child {
-    margin-left: 20px; /* Add left margin to the first card to align it properly with the container */
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 220px;
   }
-  
-  .card:last-child {
-    margin-right: 0; /* Remove right margin from the last card to prevent unnecessary space */
+}
+
+@media (max-width: 992px) {
+  .card {
+    width: 200px;
   }
-  
-  .card:hover {
-    box-shadow: 0px 8px 35px 0px #00000029;
+}
+
+@media (max-width: 768px) {
+  .card-gallery {
+    justify-content: center;
   }
-  
-  .card img {
-    width: 100%; /* Ensure the image fills the entire card */
-    height: auto; /* Allow the image to adjust its height proportionally */
-    border-radius: 10px; /* Apply border radius to the image */
+  .card {
+    width: 180px;
   }
-  
+}
+
+@media (max-width: 576px) {
+  .card-gallery {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+  }
+  .card:first-child, .card:last-child {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

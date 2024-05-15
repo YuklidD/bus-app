@@ -1,32 +1,50 @@
 import Accordion from 'react-bootstrap/Accordion';
+import './Accordion.css';
+
 
 function Accordions() {
+  const accordionsData = [
+    {
+      id: 1,
+      header: "Search for Your Route",
+      body: "Enter your starting location, destination, date, and time in the search bar on our homepage."
+    },
+    {
+      id: 2,
+      header: "Browse Available Buses",
+      body: "Enter your starting location, destination, date, and time in the search bar on our homepage."
+    },
+    {
+      id: 3,
+      header: "Select Your Seat",
+      body: "Choose your preferred seat from an interactive seating chart. Whether you prefer a window seat for the view or an aisle seat for easy access, the choice is yours."
+    },
+    {
+      id: 4,
+      header: "Complete Your Reservation",
+      body: "Secure your seat with just a few clicks. Enter your payment details and confirm your booking to finalize your reservation."
+    },
+    {
+      id: 5,
+      header: "Receive Confirmation",
+      body: "Once your reservation is confirmed, you'll receive a booking confirmation email with all the details of your journey."
+    },
+    {
+      id: 6,
+      header: "Enjoy Your Journey",
+      body: "Arrive at the bus station on time, present your ticket, and board your bus with ease. Sit back, relax, and enjoy the ride to your destination."
+    }
+  ];
+  
+
   return (
     <Accordion defaultActiveKey={['1']} alwaysOpen>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
+      {accordionsData.map((accordion) => (
+        <Accordion.Item key={accordion.id} eventKey={accordion.id.toString()}>
+          <Accordion.Header className="accordion-header">{accordion.header}</Accordion.Header>
+          <Accordion.Body className="accordion-body">{accordion.body}</Accordion.Body>
+        </Accordion.Item>
+      ))}
     </Accordion>
   );
 }

@@ -1,0 +1,29 @@
+.newsletter-container {
+    background-color: #f0f4ff;
+    border-radius: 15px;
+    padding: 30px;
+  }
+  
+  .newsletter-container h2 {
+    color: #1a1a1a;
+  }
+  
+  .newsletter-container p {
+    color: #666;
+  }
+  
+  .newsletter-container .form-control {
+    border: 2px solid #a96cfc;
+    border-radius: 25px;
+  }
+  
+  .newsletter-container .btn-primary {
+    background-color: #a96cfc;
+    border-color: #a96cfc;
+    border-radius: 25px;
+  }
+  
+  .newsletter-container .small {
+    color: #666;
+  }
+  

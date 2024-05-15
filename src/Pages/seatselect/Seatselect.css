@@ -97,11 +97,6 @@
 }
 
 /* Styles for the seat count control */
-.seat-count-control {
-    display: flex;
-    height: 50px;
-    margin-top: 15px; /* Space above the seat count control */
-}
 
 .count {
     padding-top: 20px;
@@ -112,7 +107,6 @@
     background-color: #6200ea; /* Example primary color */
     color: white;
     border: none;
-    padding: 10px 20px;
     margin-top: 20px; /* Space above the checkout button */
     cursor: pointer;
     border-radius: 5px; /* Rounded corners for the button */
@@ -151,6 +145,7 @@
 .price-section {
     padding-top: 300px; /* Adjust this value as needed for space above the price section */
     justify-content: space-between; /* This will put space between the Total and the buttons */
+    margin-left:-25px !important;
 }
 
 .seat-control-button {

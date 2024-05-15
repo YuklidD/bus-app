@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import './CardGallery.css'; // Import the CSS file
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import './CardGallery.css';
 
 // CARD component to display individual card
 function CARD({ cardData }) {
@@ -9,7 +11,7 @@ function CARD({ cardData }) {
       <Card.Img variant="top" src={cardData.imagePath} alt="Card image" />
       <Card.Body>
         <Card.Title>{cardData.title}</Card.Title>
-        <Card.Text>
+        <Card.Text className='text'>
           {cardData.text}
         </Card.Text>
       </Card.Body>
@@ -44,11 +46,13 @@ const cards = [
 // CardGallery component that maps each object in the cards array to a CARD component
 function CardGallery() {
   return (
-    <div className="card-gallery">
+    <Row xs={1} sm={2} md={3} lg={4} className="g-4 card-gallery">
       {cards.map((cardData, index) => (
-        <CARD key={index} cardData={cardData} />
+        <Col key={index}>
+          <CARD cardData={cardData} />
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 }
 
