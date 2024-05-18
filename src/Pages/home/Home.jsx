@@ -79,7 +79,6 @@
         {/* Testimonials Section */}
         <Row className="testimonials-section mt-2 mt-custom ">
           <Col xs={12}>
-            <h2>Customer Testimonials</h2>
             <Testimonials />
           </Col>
         </Row>
